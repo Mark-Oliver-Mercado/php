@@ -2,10 +2,10 @@
 session_start();
 
 // Database connection
-$host = 'localhost'; // Your database host
-$dbname = 'data_database'; // Your database name
-$username = 'root'; // Your database username
-$password = ''; // Your database password
+$host = 'localhost';
+$dbname = 'data_database';
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -47,6 +47,10 @@ if (!isset($_SESSION['current_question_index'])) {
 
 // Check if the quiz has ended
 if (isset($_POST['end_quiz'])) {
+    // Fill unanswered questions with null
+    while (count($_SESSION['answers']) < count($questions)) {
+        $_SESSION['answers'][] = null;
+    }
     header('Location: results.php'); // Redirect to results page
     exit();
 }

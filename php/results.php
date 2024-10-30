@@ -8,10 +8,10 @@ if (!isset($_SESSION['answers']) || !isset($_SESSION['age']) || !isset($_SESSION
 }
 
 // Database connection
-$host = 'localhost'; // Your database host
-$dbname = 'data_database'; // Your database name
-$username = 'root'; // Your database username
-$password = ''; // Your database password
+$host = 'localhost';
+$dbname = 'data_database';
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -29,29 +29,24 @@ $query = $pdo->prepare("SELECT correct_option FROM quiz_age_" . $age . "_lesson_
 $query->execute();
 $correct_answers = $query->fetchAll(PDO::FETCH_COLUMN);
 
-// Calculate the score and results
+// Calculate the score and results for answered questions only
 $score = 0;
-$results = []; // Array to hold question results
-
-// Count how many answers were provided
-$answered_count = count($_SESSION['answers']); // Number of answered questions
-
-// Check for mismatch in answers and correct answers count
-if (count($correct_answers) !== $answered_count) {
-    die("Mismatch in the number of answered questions and correct answers.");
-}
+$results = []; // Array to hold answered question results
 
 foreach ($_SESSION['answers'] as $index => $answer) {
-    $is_correct = $answer === $correct_answers[$index];
-    if ($is_correct) {
-        $score++;
+    if (!empty($answer)) { // Check if the question was answered
+        $correct_answer = $correct_answers[$index] ?? null;
+        $is_correct = $answer === $correct_answer;
+        if ($is_correct) {
+            $score++;
+        }
+        $results[] = [
+            'question_index' => $index + 1, // Assuming questions are 1-indexed for display
+            'user_answer' => $answer,
+            'correct_answer' => $correct_answer ?? 'N/A',
+            'is_correct' => $is_correct,
+        ];
     }
-    $results[] = [
-        'question_index' => $index + 1, // Assuming questions are 1-indexed for display
-        'user_answer' => $answer,
-        'correct_answer' => $correct_answers[$index],
-        'is_correct' => $is_correct,
-    ];
 }
 
 // Clear session variables for a new quiz
@@ -70,7 +65,7 @@ unset($_SESSION['answers'], $_SESSION['age'], $_SESSION['lesson'], $_SESSION['cu
         <h2>Quiz Results</h2>
     </header>
     <section class="quiz-score">
-        <h3>Your Score: <?php echo $score; ?> out of <?php echo $answered_count; ?></h3>
+        <h3>Your Score: <?php echo $score; ?> out of <?php echo count($results); ?></h3>
         <button onclick="window.location.href='http://localhost/EELS/php/select_age.php'" class="quiz-button">Take Another Quiz</button>
     </section>
     <section class="quiz-results">
