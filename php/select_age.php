@@ -45,14 +45,5 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         </div>
         <button class="back-button" onclick="window.location.href='dashboard.php'">Go Back</button>
     </section>
-    <script>
-    function loadBackgroundImage() {
-        const backgroundImage = localStorage.getItem('backgroundImage');
-        if (backgroundImage) {
-            document.body.style.backgroundImage = `url(${backgroundImage})`;
-        }
-    }
-    window.onload = loadBackgroundImage;
-    </script>
 </body>
 </html>
