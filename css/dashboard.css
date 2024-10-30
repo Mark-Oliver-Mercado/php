@@ -1,0 +1,119 @@
+/* Basic Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Set html and body to 100% height */
+html, body {
+    height: 100%; /* Full height for the body */
+}
+
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    transition: background-image 0.5s ease; /* Smooth transition for background image */
+    background-size: cover; /* Cover entire background */
+    background-position: center center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent image repeating */
+    background-color: rgb(15, 121, 214); /* Fallback background color */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+header {
+    background-color: rgba(255, 255, 255, 0.9); /* Light background for header */
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+h2 {
+    margin: 10px 0;
+    color: #333; /* Darker text color for readability */
+}
+
+.logout {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #d9534f; /* Bootstrap danger color for logout */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Custom File Upload Button Styles */
+.bg {
+    margin-top: 20px;
+}
+/* Hide the default file input */
+#backgroundImageInput {
+    display: none; /* Hide the input element */
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: black;
+    border-radius: 5px;
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Section Styles */
+section {
+    display: flex;
+    justify-content: center; /* Center display items */
+    margin: 100px 0;
+}
+
+/* Flex Container for the Displays */
+.display1 {
+    display: flex;
+    justify-content: space-around; /* Distribute space around the items */
+    flex-wrap: wrap; /* Wrap items on smaller screens */
+    width: 80%; /* Adjust width as needed */
+}
+
+/* Individual Display Boxes */
+.display {
+    width: 30%; /* Adjust width as needed */
+    height: 200px;
+    padding: 90px 20px 20px 20px ;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+    border-radius: 10px;
+    backdrop-filter: blur(10px); /* Blurs the content behind the div */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    color:black;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional border */
+}
+
+.display:hover {
+    transform: scale(1.05); /* Enlarge on hover */
+    background-color: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+    z-index: 10; /* Ensure the hovered box appears above other content */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .display {
+        width: 45%; /* Adjust width for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .display {
+        width: 90%; /* Full width on mobile */
+        margin-bottom: 10px; /* Space between items */
+    }
+}

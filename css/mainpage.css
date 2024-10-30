@@ -1,0 +1,21 @@
+body {
+    background-color: purple !important; /* Light background color */
+}
+.hero {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* White text color for contrast */
+    padding: 40px 20px; /* Padding for the hero section */
+    border-radius: 10px; /* Rounded corners */
+}
+.btn-custom {
+    background-color: #28a745; /* Green background */
+    color: white; /* White text for buttons */
+}
+.btn-outline-custom {
+    border-color: #28a745; /* Custom green border */
+    color: #28a745; /* Green text */
+}
+.btn-outline-custom:hover {
+    background-color: #28a745; /* Green background on hover */
+    color: white; /* White text on hover */
+}

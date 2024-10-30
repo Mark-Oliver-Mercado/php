@@ -1,0 +1,182 @@
+/* General Styles for Background */
+body {
+    font-family: Arial, sans-serif;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    box-sizing: border-box;
+}
+
+/* Ensure all elements respect the box model */
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h2 {
+    margin: 0;
+}
+
+/* Section and Form Styling */
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    padding: 20px;
+    width: 100%; /* Ensure section takes full width */
+    max-width: 100vw; /* Prevent section from exceeding viewport width */
+}
+
+section h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Center Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the buttons within the form */
+    width: 100%;
+    max-width: 100vw;
+}
+
+/* Frosted Glass Button Styles */
+form button {
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 8px;
+    margin: 10px 0;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+/* Hover and Focus Effects */
+form button:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+form button:focus {
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+}
+
+
+/* Header Style */
+.quiz-header {
+    text-align: center;
+    padding: 20px;
+    background-color: #4b0082;
+    color: #fff;
+    margin-bottom: 20px;
+    width: 100%; /* Full width to avoid overflow */
+}
+
+.quiz-header h2 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+/* Score Section */
+.quiz-score {
+    text-align: center;
+    margin: 20px auto;
+    background-color: #e0e7ff;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 80%;
+    color: #333;
+}
+/* Button Style */
+.quiz-button {
+    padding: 15px 25px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    background: linear-gradient(135deg, #4b0082, #6a0dad); /* Indigo gradient */
+}
+
+.quiz-button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #6a0dad, #8a2be2); /* Lighter gradient on hover */
+}
+
+.quiz-button:focus {
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Results Table */
+.results-table {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fafafa;
+}
+
+/* Other button and table styles here */
+
+
+.results-table th, .results-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.results-table th {
+    background-color: #4b0082;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+.results-table td {
+    font-size: 1em;
+}
+
+.results-table tr:nth-child(even) {
+    background-color: #e0e7ff; /* Light lavender for alternating rows */
+}
+
+/* Result Row Colors */
+.results-table tr.correct td {
+    background-color: #d4edda; /* Light green for correct answers */
+    color: #155724;
+}
+
+.results-table tr.wrong td {
+    background-color: #f8d7da; /* Light red for incorrect answers */
+    color: #721c24;
+}
