@@ -95,13 +95,7 @@ unset($_SESSION['answers'], $_SESSION['age'], $_SESSION['lesson'], $_SESSION['cu
         </table>
     </section>
     <script>
-    function loadBackgroundImage() {
-        const backgroundImage = localStorage.getItem('backgroundImage');
-        if (backgroundImage) {
-            document.body.style.backgroundImage = `url(${backgroundImage})`;
-        }
-    }
-    window.onload = loadBackgroundImage;
+    
 </script>
 </body>
 </html>

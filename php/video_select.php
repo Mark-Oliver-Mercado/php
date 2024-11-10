@@ -16,7 +16,7 @@ session_start();
     </header>
     <section>
         <div class="display1">
-            <div class="display" onclick="window.location.href='http://localhost/EELS/php/video.php?age=7'">
+            <div class="display" onclick="window.location.href='http://localhost/EELS/php/lessons_video.php?age=7'">
                 <h1>7</h1>
             </div>
             <div class="display" onclick="window.location.href='http://localhost/EELS/php/video.php?age=8'">
@@ -41,13 +41,6 @@ session_start();
         <button class="back-button" onclick="window.location.href='http://localhost/EELS/php/dashboard.php'">Go Back</button>
     </section>
     <script>
-    function loadBackgroundImage() {
-        const backgroundImage = localStorage.getItem('backgroundImage');
-        if (backgroundImage) {
-            document.body.style.backgroundImage = `url(${backgroundImage})`;
-        }
-    }
-    window.onload = loadBackgroundImage;
 </script>    
 </body>
 </html>

@@ -37,13 +37,6 @@ if (isset($_GET['age'])) {
         <button class="back-button" onclick="window.location.href='select_age.php'">Go Back</button>
     </section>
     <script>
-    function loadBackgroundImage() {
-        const backgroundImage = localStorage.getItem('backgroundImage');
-        if (backgroundImage) {
-            document.body.style.backgroundImage = `url(${backgroundImage})`;
-        }
-    }
-    window.onload = loadBackgroundImage;
     </script>
 </body>
 </html>

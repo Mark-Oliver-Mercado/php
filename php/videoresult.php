@@ -1,17 +1,17 @@
 <?php
 session_start();
 
-// Ensure the quiz has been taken
-if (!isset($_SESSION['answers'])) {
-    header('Location: video_select.php'); // Redirect to age selection if no answers are present
+// Ensure the quiz has been taken and session data is set
+if (!isset($_SESSION['answers']) || !isset($_SESSION['age']) || !isset($_SESSION['lesson'])) {
+    header('Location: video_select.php'); // Redirect if no answers or age/lesson are present
     exit();
 }
 
 // Database connection
-$host = 'localhost'; // Your database host
-$dbname = 'video_database'; // Your database name for videos
-$username = 'root'; // Your database username
-$password = ''; // Your database password
+$host = 'localhost';
+$dbname = 'video_database';
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -20,43 +20,44 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
-// Fetch correct answers
-$query = $pdo->prepare("SELECT correct_option FROM video_age_7");
+// Retrieve age and lesson from the session
+$age = $_SESSION['age'];
+$lesson = $_SESSION['lesson'];
+
+// Database query to fetch correct answers for the specific age and lesson
+$query = $pdo->prepare("SELECT correct_option FROM video_age_" . $age . "_lesson_" . $lesson);
 $query->execute();
 $correct_answers = $query->fetchAll(PDO::FETCH_COLUMN);
 
-// Calculate the score and results
+// Calculate the score and results for answered questions only
 $score = 0;
-$results = []; // Array to hold question results
-
-// Count how many answers were provided
-$answered_count = count($_SESSION['answers']); // Number of answered questions
+$results = []; // Array to hold answered question results
 
 foreach ($_SESSION['answers'] as $index => $answer) {
-    $is_correct = $answer === $correct_answers[$index];
-    if ($is_correct) {
-        $score++;
+    if (!empty($answer)) { // Check if the question was answered
+        $correct_answer = $correct_answers[$index] ?? null;
+        $is_correct = $answer === $correct_answer;
+        if ($is_correct) {
+            $score++;
+        }
+        $results[] = [
+            'question_index' => $index + 1, // Assuming questions are 1-indexed for display
+            'user_answer' => $answer,
+            'correct_answer' => $correct_answer ?? 'N/A',
+            'is_correct' => $is_correct,
+        ];
     }
-    $results[] = [
-        'question_index' => $index + 1, // Assuming questions are 1-indexed for display
-        'user_answer' => $answer,
-        'correct_answer' => $correct_answers[$index],
-        'is_correct' => $is_correct,
-    ];
 }
 
 // Clear session variables for a new quiz
-unset($_SESSION['answers']);
-unset($_SESSION['age']); // Reset age if needed
-unset($_SESSION['current_video_index']); // Also clear current video index if it's being used
-unset($_SESSION['score']); // Clear score if it's being used
+unset($_SESSION['answers'], $_SESSION['age'], $_SESSION['lesson'], $_SESSION['current_video_index'], $_SESSION['score']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Results</title>
+    <title>Video Quiz Results</title>
     <link rel="stylesheet" href="../quiz.css">
 </head>
 <body>
@@ -64,7 +65,7 @@ unset($_SESSION['score']); // Clear score if it's being used
         <h2>Video Quiz Results</h2>
     </header>
     <section class="quiz-score">
-        <h3>Your Score: <?php echo $score; ?> out of <?php echo $answered_count; ?></h3> <!-- Use the answered count here -->
+        <h3>Your Score: <?php echo $score; ?> out of <?php echo count($results); ?></h3>
         <button onclick="window.location.href='http://localhost/EELS/php/video_select.php'" class="quiz-button">Take Another Quiz</button>
     </section>
     <section class="quiz-results">
@@ -74,6 +75,7 @@ unset($_SESSION['score']); // Clear score if it's being used
                 <tr>
                     <th>Question #</th>
                     <th>Your Answer</th>
+                    <th>Correct Answer</th>
                     <th>Result</th>
                 </tr>
             </thead>
@@ -82,6 +84,7 @@ unset($_SESSION['score']); // Clear score if it's being used
                     <tr class="<?php echo $result['is_correct'] ? 'correct' : 'wrong'; ?>">
                         <td><?php echo htmlspecialchars($result['question_index']); ?></td>
                         <td><?php echo htmlspecialchars($result['user_answer']); ?></td>
+                        <td><?php echo htmlspecialchars($result['correct_answer']); ?></td>
                         <td><?php echo $result['is_correct'] ? 'Correct' : 'Wrong'; ?></td>
                     </tr>
                 <?php endforeach; ?>
@@ -89,13 +92,6 @@ unset($_SESSION['score']); // Clear score if it's being used
         </table>
     </section>
     <script>
-    function loadBackgroundImage() {
-        const backgroundImage = localStorage.getItem('backgroundImage');
-        if (backgroundImage) {
-            document.body.style.backgroundImage = `url(${backgroundImage})`;
-        }
-    }
-    window.onload = loadBackgroundImage;
     </script>
 </body>
 </html>

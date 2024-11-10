@@ -45,5 +45,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         </div>
         <button class="back-button" onclick="window.location.href='dashboard.php'">Go Back</button>
     </section>
+    <script>
+    </script>
 </body>
 </html>

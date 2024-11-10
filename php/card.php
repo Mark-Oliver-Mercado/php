@@ -99,13 +99,6 @@ $current_question = $questions[$current_question_index];
         </form>
     </section>
     <script>
-    function loadBackgroundImage() {
-        const backgroundImage = localStorage.getItem('backgroundImage');
-        if (backgroundImage) {
-            document.body.style.backgroundImage = `url(${backgroundImage})`;
-        }
-    }
-    window.onload = loadBackgroundImage;
 </script>
 </body>
 </html>
