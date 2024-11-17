@@ -52,6 +52,12 @@ foreach ($_SESSION['answers'] as $index => $answer) {
 // Clear session variables for a new quiz
 unset($_SESSION['answers'], $_SESSION['age'], $_SESSION['lesson'], $_SESSION['current_question_index'], $_SESSION['score']);
 ?>
+<?php
+
+// Check if the theme color is set in the session, otherwise default to a preset value (like 'blue')
+$theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blue'; // Default to blue theme if not set
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,6 +65,7 @@ unset($_SESSION['answers'], $_SESSION['age'], $_SESSION['lesson'], $_SESSION['cu
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Results</title>
     <link rel="stylesheet" href="../quiz.css">
+    <link rel="stylesheet" href="../css/<?php echo ($theme_color == 'blue') ? 'blue' : 'pink'; ?>.css">
 </head>
 <body>
     <header class="quiz-header">

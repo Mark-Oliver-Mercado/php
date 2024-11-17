@@ -84,6 +84,12 @@ if ($current_question_index >= count($questions)) {
 // Current question details
 $current_question = $questions[$current_question_index];
 ?>
+<?php
+
+// Check if the theme color is set in the session, otherwise default to a preset value (like 'blue')
+$theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blue'; // Default to blue theme if not set
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,6 +97,7 @@ $current_question = $questions[$current_question_index];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz for Age <?php echo htmlspecialchars($age); ?> - Lesson <?php echo htmlspecialchars($lesson); ?></title>
     <link rel="stylesheet" href="../quiz.css">
+    <link rel="stylesheet" href="../css/<?php echo ($theme_color == 'blue') ? 'blue' : 'pink'; ?>.css">
 </head>
 <body>
     <header>

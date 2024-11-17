@@ -16,6 +16,7 @@ if (isset($_GET['age'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Lesson for Age <?php echo $_SESSION['age']; ?></title>
     <link rel="stylesheet" href="../css/select.css">
+    <link rel="stylesheet" href="../css/<?php echo ($theme_color == 'blue') ? 'blue' : 'pink'; ?>.css">
 </head>
 <body>
     <header>
@@ -36,14 +37,5 @@ if (isset($_GET['age'])) {
         </div>
         <button class="back-button" onclick="window.location.href='video_select.php'">Go Back</button>
     </section>
-    <script>
-    function loadBackgroundImage() {
-        const backgroundImage = localStorage.getItem('backgroundImage');
-        if (backgroundImage) {
-            document.body.style.backgroundImage = `url(${backgroundImage})`;
-        }
-    }
-    window.onload = loadBackgroundImage;
-    </script>
 </body>
 </html>

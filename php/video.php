@@ -82,7 +82,12 @@ $current_video = $videos[$current_video_index];
 $video_url = $current_video['video_path'];
 $embed_url = str_replace('watch?v=', 'embed/', $video_url);
 ?>
+<?php
 
+// Check if the theme color is set in the session, otherwise default to a preset value (like 'blue')
+$theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blue'; // Default to blue theme if not set
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,6 +95,8 @@ $embed_url = str_replace('watch?v=', 'embed/', $video_url);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Quiz for Age <?php echo htmlspecialchars($age); ?> - Lesson <?php echo htmlspecialchars($lesson); ?></title>
     <link rel="stylesheet" href="../quiz.css">
+    <link rel="stylesheet" href="../css/<?php echo ($theme_color == 'blue') ? 'blue' : 'pink'; ?>.css">
+    
 </head>
 <body>
     <header>

@@ -1,21 +1,26 @@
 body {
-    background-color: purple !important; /* Light background color */
+    background-image: url(../images/front\ bg.gif);
+background-size: cover;
+background-position: center center; /* Adjust the image position to focus on the top-center */
 }
-.hero {
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white; /* White text color for contrast */
-    padding: 40px 20px; /* Padding for the hero section */
-    border-radius: 10px; /* Rounded corners */
+
+
+/* Applying Google font 'Roboto' */
+body {
+    font-family: 'Roboto', sans-serif;
 }
-.btn-custom {
-    background-color: #28a745; /* Green background */
-    color: white; /* White text for buttons */
+
+/* Additional custom styles */
+h1 {
+    font-weight: 700; /* Make the header bold */
+    color: #333;
 }
-.btn-outline-custom {
-    border-color: #28a745; /* Custom green border */
-    color: #28a745; /* Green text */
+
+.lead {
+    font-size: 1.2em;
+    line-height: 1.6;
 }
-.btn-outline-custom:hover {
-    background-color: #28a745; /* Green background on hover */
-    color: white; /* White text on hover */
+
+.btn {
+    font-size: 1.1em;
 }

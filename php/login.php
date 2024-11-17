@@ -1,37 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="../signin.css"> <!-- Ensure the correct path -->
-</head>
-<body>
-    <div class="container">
-        <h2>Login</h2>
-        <form id="loginForm" action="login.php" method="POST">
-            <label for="email">Email</label>
-            <input type="email" name="email" required>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            <div class="show-password-container">
-                <input type="checkbox" id="showPassword" onclick="togglePassword()">
-                <label for="showPassword">Show Password</label>
-            </div>
-            <button type="submit">Login</button>
-        </form>
-        <p>Don't have an account? <a href="signup.php">Sign up here</a></p>
-    </div>
-    <script>
-        function togglePassword() {
-            const passwordField = document.getElementById("password");
-            const checkbox = document.getElementById("showPassword");
-            passwordField.type = checkbox.checked ? "text" : "password";
-        }
-    </script>
-</body>
-</html>
-
 <?php
 session_start(); // Start the session
 include 'config.php'; // Database connection file
@@ -55,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Store the user's information in the session
             $_SESSION['username'] = $user['username'];
             $_SESSION['email'] = $user['email'];
+            $_SESSION['id'] = $user['id']; // Store user ID in session
             $_SESSION['loggedin'] = true; // Set logged-in session variable
 
             // Redirect to the dashboard page
@@ -81,3 +48,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn->close();
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../signin.css"> <!-- Ensure the correct path -->
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm" action="login.php" method="POST">
+            <label for="email">Email</label>
+            <input type="email" name="email" required value="" autocomplete="off">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <div class="show-password-container">
+                <input type="checkbox" id="showPassword" onclick="togglePassword()">
+                <label for="showPassword">Show Password</label>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="signup.php">Sign up here</a></p>
+    </div>
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById("password");
+            const checkbox = document.getElementById("showPassword");
+            passwordField.type = checkbox.checked ? "text" : "password";
+        }
+    </script>
+</body>
+</html>

@@ -1,7 +1,10 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
+    background-image:url(./images/login\ bg.gif) !important;
     background-color: #f4f4f4; /* Light grey background */
+    background-repeat: no-repeat;
+    background-size: cover;
     margin: 0;
     padding: 0;
 }

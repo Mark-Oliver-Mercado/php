@@ -9,6 +9,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: rgb(15, 121, 214); /* Fallback background color */
+    background-image:url(../images/front\ bg.gif);
     display: flex;
     justify-content: center;
     align-items: center;

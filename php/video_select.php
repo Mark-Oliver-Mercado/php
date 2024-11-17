@@ -2,6 +2,12 @@
 session_start();
 // Don't destroy the session here, keep it active for navigation
 ?>
+<?php
+
+// Check if the theme color is set in the session, otherwise default to a preset value (like 'blue')
+$theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blue'; // Default to blue theme if not set
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +15,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Age</title>
     <link rel="stylesheet" href="../css/select.css">
+    <link rel="stylesheet" href="../css/<?php echo ($theme_color == 'blue') ? 'blue' : 'pink'; ?>.css">
+    
 </head>
 <body>
     <header>

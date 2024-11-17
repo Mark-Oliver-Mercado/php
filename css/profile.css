@@ -1,70 +1,184 @@
-/* Center the form on the screen using flexbox */
-.upload-form {
-    padding-top: 30px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center; /* Horizontally center */
-    align-items: center; /* Vertically center */
-    margin-top: 100px;
-    margin-left: 300px;
-    margin-right: 300px;
-    flex-direction: column; /* Stack form content vertically */
-    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
+/* profile.css */
 
-/* Container for the file upload and content */
-.bg {
-    display: flex;
-    flex-direction: column; /* Stack the circle and content vertically */
-    justify-content: center; /* Center the circle and content */
-    align-items: center; /* Align items horizontally */
-}
-
-/* Style for the circular button */
-.circle {
-    width: 100px; /* Set the size of the circle */
-    height: 100px;
-    border-radius: 50%; /* Make it a circle */
-    background-color: #007bff; /* Set the default background color */
+/* Basic page styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    overflow: hidden; /* Ensures the image stays within the circle */
-    position: relative;
-    margin-bottom: 20px; /* Space between the circle and the text */
+    height: 100vh;
 }
 
-/* Hide the default file input element */
-#backgroundImageInput {
-    display: none; /* Hide the file input element */
+/* Container for the form */
+.upload-form {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 400px;
+    max-width: 100%;
+    text-align: center;
 }
 
-/* Optional style for the label text */
+/* Background image for the form */
+.bg {
+    padding: 20px;
+}
+
+/* Custom file upload label styles */
 .custom-file-upload {
-    display: inline-block;
+    display: block;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
     cursor: pointer;
-    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
 }
 
-/* Hover effect for the circle */
-.circle:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+/* Circle to display the profile image */
+.circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
 }
 
-/* Optional style for the label text */
-.custom-file-upload:after {
-    content: 'Upload Background'; /* Text inside the circle */
-    color: white;
-    font-weight: bold;
+/* File input styling (hidden) */
+input[type="file"] {
     position: absolute;
-    text-align: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
 }
 
-/* Styling for the text below the circle */
-.content {
-    text-align: center; /* Center text */
-    max-width: 400px; /* Optional: limit the text width */
+/* Text under the profile picture */
+.custom-file-upload p {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Save button */
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Bio section */
+.bio {
+    margin-top: 20px;
+    color: #666;
+}
+
+.bio p {
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* Responsive styling */
+@media (max-width: 500px) {
+    .upload-form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .custom-file-upload {
+        width: 120px;
+        height: 120px;
+    }
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+    z-index: 999; /* Position it in front of other content */
+}
+
+/* Pop-up message styling for errors and success */
+.error-message, .success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    z-index: 1000; /* Ensures it displays above the overlay */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.error-message {
+    border: 1px solid #f5c6cb;
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.success-message {
+    border: 1px solid #c3e6cb;
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error-message h1, .success-message h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.error-message p, .success-message p {
+    font-size: 1em;
+    margin: 0;
+}
+
+.error-message a, .success-message a {
+    color: inherit;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.error-message a:hover, .success-message a:hover {
+    text-decoration: none;
+}
+textarea {
+    outline: none; /* Removes the outline */
+    border: none; /* Removes the border */
+    padding: 10px; /* Optional: Adds padding inside the textarea */
+    width: 100%; /* Optional: Makes the textarea responsive */
+    resize: vertical; /* Optional: Allows the textarea to be resized vertically */
+    box-shadow: none; /* Removes any shadow that might appear */
+    background: none; /* Ensures no background artifacts */
+}
+
+textarea:focus {
+    outline: none; /* Ensures no outline appears on focus */
+    border: none; /* Ensures no border appears on focus */
+    box-shadow: none; /* Removes any shadow when focused */
 }

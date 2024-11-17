@@ -1,0 +1,51 @@
+/* Blue Theme Styles */
+body {
+    background-color: #e0f7fa;
+    color: #006064;
+}
+
+
+h2 {
+    color: #005b96; /* A slightly darker blue */
+}
+
+.container {
+    background-color: #ffffff;
+    border: 1px solid #b2ebf2;
+}
+
+button {
+    background-color: #0288d1;
+}
+
+button:hover {
+    background-color: #0277bd;
+}
+
+input[type="email"],
+input[type="password"],
+select {
+    border: 1px solid #0288d1;
+}
+
+h3 {
+    color: #0288d1;
+}
+
+.success-message {
+    background-color: #b3e5fc;
+    color: #0288d1;
+}
+
+.error-message {
+    background-color: #ffebee;
+    color: #d32f2f;
+}
+
+.back-link {
+    color: #0288d1;
+}
+
+.back-link:hover {
+    color: #01579b;
+}
