@@ -1,26 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Rampart+One&family=Tenali+Ramakrishna&display=swap");
 body {
-    background-image: url(../images/front\ bg.gif);
-background-size: cover;
-background-position: center center; /* Adjust the image position to focus on the top-center */
+  box-sizing: border-box;
+  background-color: aquamarine;
+  background: url(../images/front\ bg.gif) no-repeat center center fixed;
+  background-size: cover;
+  color: black;
+  margin: 0px;
+  padding: 0px;
 }
-
-
-/* Applying Google font 'Roboto' */
-body {
-    font-family: 'Roboto', sans-serif;
+header {
+  width: 100%;
+  border-bottom: 1px solid black;
 }
-
-/* Additional custom styles */
+.logo {
+  background-color: darkcyan;
+  perspective: 1000px;
+}
+.logo img {
+  height: 80px;
+  width: 80px;
+  padding: 3px 0 0 3px;
+  image-resolution: 100%;
+}
 h1 {
-    font-weight: 700; /* Make the header bold */
-    color: #333;
+  text-align: center;
+  font-size: 70px;
+  padding-top: 100px;
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 1000px;
+  font-style: normal;
+}
+p {
+  padding: 0px 100px 100px 100px;
+  text-align: center;
+  font-family: "Tenali Ramakrishna", sans-serif;
+  font-weight: 400px;
+  font-style: normal;
+  font-size: 25px;
+  margin-bottom: 0px;
 }
 
-.lead {
-    font-size: 1.2em;
-    line-height: 1.6;
+footer {
+  border-top: 1px solid black;
+  text-align: center;
+  padding: 15px 50px;
+  background-color: darkcyan;
 }
-
-.btn {
-    font-size: 1.1em;
+ul {
+  list-style-type: none;
+}
+li {
+  float: left;
+  margin: 0 150px 0 150px;
 }
