@@ -1,8 +1,8 @@
 <?php
+session_start(); // Start the session
 
 // Check if the theme color is set in the session, otherwise default to a preset value (like 'blue')
 $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blue'; // Default to blue theme if not set
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

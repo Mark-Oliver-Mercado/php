@@ -4,6 +4,11 @@ body {
     color: #880e4f;
 }
 
+h2 {
+    color: #f23d57; /* A slightly darker pink */
+}
+
+
 .container {
     background-color: #ffffff;
     border: 1px solid #f48fb1;

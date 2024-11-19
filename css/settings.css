@@ -21,6 +21,7 @@ h2 {
     color: #333;
 }
 
+/* Form section styling */
 .form-section {
     margin-bottom: 20px;
     padding: 20px;
@@ -31,8 +32,10 @@ h2 {
 
 h3 {
     margin-bottom: 10px;
+    color: #333;
 }
 
+/* Label styles */
 label {
     display: block;
     font-weight: bold;
@@ -40,8 +43,11 @@ label {
     color: #333;
 }
 
+/* Input and select field styling */
 input[type="email"],
 input[type="password"],
+input[type="text"],
+input[type="number"],
 select {
     width: 100%;
     padding: 10px;
@@ -51,6 +57,7 @@ select {
     font-size: 16px;
 }
 
+/* Button styling */
 button {
     padding: 10px 20px;
     font-size: 16px;
@@ -66,33 +73,31 @@ button:hover {
     background-color: #45a049;
 }
 
-.back-link {
-    display: inline-block;
-    margin-top: 20px;
-    text-align: center;
-    font-size: 16px;
-    color: #007BFF;
-    text-decoration: none;
+/* Overlay and message styling */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    display: block;
 }
 
-.back-link:hover {
-    text-decoration: underline;
-}
-
-.success-message,
-.error-message {
+.success-message, .error-message {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 9999;
-    width: 300px;
+    max-width: 400px;
+    width: 100%;
     text-align: center;
-    display: none;
 }
 
 .success-message {
@@ -105,14 +110,10 @@ button:hover {
     color: #721c24;
 }
 
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9998;
-    display: none;
+.success-message a,
+.error-message a {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
 }
-

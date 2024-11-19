@@ -22,13 +22,11 @@ $stmt->close();
 
 // Set a default image if no profile picture is set
 $profileImagePath = $profileImagePath ? '../uploads/' . $profileImagePath : 'default-profile.png';
-?>
-<?php
 
-// Check if the theme color is set in the session, otherwise default to a preset value (like 'blue')
-$theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blue'; // Default to blue theme if not set
-
+// Retrieve the theme color from session
+$theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blue'; // Default to blue if no theme is set
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +34,7 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard.css">
+    <!-- Dynamically link the CSS for the selected theme -->
     <link rel="stylesheet" href="../css/<?php echo ($theme_color == 'blue') ? 'blue' : 'pink'; ?>.css">
 </head>
 <body>

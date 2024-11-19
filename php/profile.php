@@ -31,29 +31,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profileImage'])) {
             $stmt->bind_param("si", $newImageName, $user_id);
             if ($stmt->execute()) {
                 echo "<div class='overlay'></div>";
-                echo "<div class='error-message'>";
-                echo "Profile image updated successfully.";
+                echo "<div class='error-message'>Profile image updated successfully.";
                 echo "<a href='dashboard.php'>Home</a>.</p>";
                 echo "</div>";
             } else {
                 echo "<div class='overlay'></div>";
-                echo "<div class='error-message'>";
-                echo "Error updating profile image.";
+                echo "<div class='error-message'>Error updating profile image.";
                 echo "<a href='dashboard.php'>Home</a>.</p>";
                 echo "</div>";
             }
             $stmt->close();
         } else {
             echo "<div class='overlay'></div>";
-            echo "<div class='error-message'>";
-            echo "Error uploading the file.";
+            echo "<div class='error-message'>Error uploading the file.";
             echo "<a href='dashboard.php'>Home</a>.</p>";
             echo "</div>";
         }
     } else {
         echo "<div class='overlay'></div>";
-        echo "<div class='error-message'>";
-        echo "Invalid file type. Only JPEG, PNG, and GIF are allowed.";
+        echo "<div class='error-message'>Invalid file type. Only JPEG, PNG, and GIF are allowed.";
         echo "<a href='dashboard.php'>Home</a>.</p>";
         echo "</div>";
     }
@@ -70,27 +66,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['bio'])) {
     $stmt->bind_param("si", $bio, $user_id);
     if ($stmt->execute()) {
         echo "<div class='overlay'></div>";
-        echo "<div class='error-message'>";
-        echo "Bio updated successfully.";
+        echo "<div class='error-message'>Bio updated successfully.";
         echo "<a href='dashboard.php'>Home</a>.</p>";
         echo "</div>";
     } else {
         echo "<div class='overlay'></div>";
-        echo "<div class='error-message'>";
-        echo "Error updating bio.";
+        echo "<div class='error-message'>Error updating bio.";
         echo "<a href='dashboard.php'>Home</a>.</p>";
         echo "</div>";
     }
     $stmt->close();
 }
 
-// Fetch the current profile image and bio from the database
+// Fetch the current profile details from the database
 $user_id = $_SESSION['id'];
-$query = "SELECT profile_image, bio FROM users WHERE id = ?";
+$query = "SELECT username, email, birthday, class_status, height, weight, interest, profile_image, bio FROM users WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
-$stmt->bind_result($profileImagePath, $bio);
+$stmt->bind_result($username, $email, $birthday, $class_status, $height, $weight, $interests, $profileImagePath, $bio);
 $stmt->fetch();
 $stmt->close();
 
@@ -124,11 +118,21 @@ if (!$bio) {
         </label>
         <button type="submit">Save Picture</button>
 
+        <!-- User Details Section -->
+        <div>
+            <p><strong>Name:</strong> <?php echo htmlspecialchars($username); ?></p>
+            <p><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></p>
+            <p><strong>Birthday:</strong> <?php echo htmlspecialchars($birthday); ?></p>
+            <p><strong>Class Status:</strong> <?php echo htmlspecialchars($class_status); ?></p>
+            <p><strong>Height:</strong> <?php echo htmlspecialchars($height); ?> cm</p>
+            <p><strong>Weight:</strong> <?php echo htmlspecialchars($weight); ?> kg</p>
+            <p><strong>Interests:</strong> <?php echo htmlspecialchars($interests); ?></p>
+        </div>
+
         <!-- Bio Section -->
         <div>
             <p>Bio:</p>
             <textarea name="bio" rows="4" cols="50"><?php echo htmlspecialchars($bio); ?></textarea>
-            <button type="submit">Save Bio</button>
         </div>
     </div>
 </form>

@@ -1,5 +1,3 @@
-/* profile.css */
-
 /* Basic page styles */
 body {
     font-family: Arial, sans-serif;
@@ -10,6 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
 }
 
 /* Container for the form */
@@ -18,12 +17,13 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 40px;
-    width: 400px;
+    width: 450px;
     max-width: 100%;
     text-align: center;
+    overflow: hidden;
 }
 
-/* Background image for the form */
+/* Background container */
 .bg {
     padding: 20px;
 }
@@ -86,30 +86,37 @@ button[type="submit"]:hover {
     background-color: #45a049;
 }
 
-/* Bio section */
-.bio {
+/* User Details Section */
+.user-details {
     margin-top: 20px;
-    color: #666;
+    text-align: left;
+    color: #333;
 }
 
-.bio p {
-    font-size: 14px;
-    line-height: 1.6;
-    text-align: justify;
+.user-details p {
+    font-size: 16px;
+    margin: 10px 0;
 }
 
-/* Responsive styling */
-@media (max-width: 500px) {
-    .upload-form {
-        width: 90%;
-        padding: 20px;
-    }
-
-    .custom-file-upload {
-        width: 120px;
-        height: 120px;
-    }
+.user-details strong {
+    color: #4CAF50;
 }
+
+/* Bio Section */
+textarea {
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    resize: vertical;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+textarea:focus {
+    border-color: #4CAF50;
+}
+
+/* Error and Success Message Styling */
 .overlay {
     position: fixed;
     top: 0;
@@ -117,10 +124,9 @@ button[type="submit"]:hover {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
-    z-index: 999; /* Position it in front of other content */
+    z-index: 999;
 }
 
-/* Pop-up message styling for errors and success */
 .error-message, .success-message {
     position: fixed;
     top: 50%;
@@ -132,7 +138,7 @@ button[type="submit"]:hover {
     width: 90%;
     max-width: 400px;
     text-align: center;
-    z-index: 1000; /* Ensures it displays above the overlay */
+    z-index: 1000;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
@@ -167,18 +173,16 @@ button[type="submit"]:hover {
 .error-message a:hover, .success-message a:hover {
     text-decoration: none;
 }
-textarea {
-    outline: none; /* Removes the outline */
-    border: none; /* Removes the border */
-    padding: 10px; /* Optional: Adds padding inside the textarea */
-    width: 100%; /* Optional: Makes the textarea responsive */
-    resize: vertical; /* Optional: Allows the textarea to be resized vertically */
-    box-shadow: none; /* Removes any shadow that might appear */
-    background: none; /* Ensures no background artifacts */
-}
 
-textarea:focus {
-    outline: none; /* Ensures no outline appears on focus */
-    border: none; /* Ensures no border appears on focus */
-    box-shadow: none; /* Removes any shadow when focused */
+/* Responsive styling */
+@media (max-width: 500px) {
+    .upload-form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .custom-file-upload {
+        width: 120px;
+        height: 120px;
+    }
 }

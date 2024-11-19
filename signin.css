@@ -1,7 +1,6 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-image:url(./images/login\ bg.gif) !important;
     background-color: #f4f4f4; /* Light grey background */
     background-repeat: no-repeat;
     background-size: cover;
@@ -38,7 +37,7 @@ label {
 }
 
 /* Input Styles */
-input {
+input, select {
     width: 100%; /* Full width */
     height: 40px; /* Fixed height to maintain size */
     padding: 10px; /* Padding inside the input fields */
@@ -46,6 +45,12 @@ input {
     border-radius: 4px; /* Rounded corners */
     font-size: 16px; /* Increase font size */
     box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+/* Select Box Styles */
+select {
+    background-color: #fff; /* White background for the select */
+    cursor: pointer; /* Pointer cursor on hover */
 }
 
 /* Show Password Checkbox Styles */

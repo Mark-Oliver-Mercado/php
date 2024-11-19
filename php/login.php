@@ -24,6 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['id'] = $user['id']; // Store user ID in session
             $_SESSION['loggedin'] = true; // Set logged-in session variable
 
+            // Fetch the theme color from the database and store it in the session
+            $_SESSION['theme_color'] = $user['theme_color']; // Assuming the theme color is stored in the 'theme_color' column
+
             // Redirect to the dashboard page
             header("Location: dashboard.php");
             exit();
