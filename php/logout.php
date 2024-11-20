@@ -40,7 +40,7 @@ if (isset($_GET['confirm'])) {
             $mail->setFrom('markolivermercado101@gmail.com', 'Mailer');
             $mail->addAddress($user_email);
 
-            // Content
+            // Content OF EMAIL
             $mail->isHTML(true);
             $mail->Subject = 'Logout Confirmation';
             $mail->Body    = 'Hello, you have successfully logged out from your account.';
