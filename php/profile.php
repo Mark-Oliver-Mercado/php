@@ -101,55 +101,60 @@ if (!$bio) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="../css/profile.css"> 
+    <link rel="stylesheet" href="../css/profile.css">
 </head>
+
 <body>
-<form class="upload-form" method="POST" enctype="multipart/form-data">
-    <div class="bg">
-        <label class="custom-file-upload">
-            <div class="circle" style="background-image: url('<?php echo '../uploads/' . $profileImagePath; ?>'); background-size: cover; background-position: center;">
-                <input type="file" name="profileImage" id="profileImageInput" accept="image/*" onchange="previewProfileImage(event)" />
+
+
+    <form class="upload-form" method="POST" enctype="multipart/form-data">
+        <div class="bg">
+            <label class="custom-file-upload">
+                <div class="circle" style="background-image: url('<?php echo '../uploads/' . $profileImagePath; ?>'); background-size: cover; background-position: center;">
+                    <input type="file" name="profileImage" id="profileImageInput" accept="image/*" onchange="previewProfileImage(event)" />
+                </div>
+                <p>Change Profile Picture</p>
+            </label>
+            <button type="submit">Save Picture</button>
+
+            <!-- User Details Section -->
+            <div>
+                <p><strong>Name:</strong> <?php echo htmlspecialchars($username); ?></p>
+                <p><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></p>
+                <p><strong>Birthday:</strong> <?php echo htmlspecialchars($birthday); ?></p>
+                <p><strong>Class Status:</strong> <?php echo htmlspecialchars($class_status); ?></p>
+                <p><strong>Height:</strong> <?php echo htmlspecialchars($height); ?> cm</p>
+                <p><strong>Weight:</strong> <?php echo htmlspecialchars($weight); ?> kg</p>
+                <p><strong>Interests:</strong> <?php echo htmlspecialchars($interests); ?></p>
             </div>
-            <p>Change Profile Picture</p>
-        </label>
-        <button type="submit">Save Picture</button>
 
-        <!-- User Details Section -->
-        <div>
-            <p><strong>Name:</strong> <?php echo htmlspecialchars($username); ?></p>
-            <p><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></p>
-            <p><strong>Birthday:</strong> <?php echo htmlspecialchars($birthday); ?></p>
-            <p><strong>Class Status:</strong> <?php echo htmlspecialchars($class_status); ?></p>
-            <p><strong>Height:</strong> <?php echo htmlspecialchars($height); ?> cm</p>
-            <p><strong>Weight:</strong> <?php echo htmlspecialchars($weight); ?> kg</p>
-            <p><strong>Interests:</strong> <?php echo htmlspecialchars($interests); ?></p>
+            <!-- Bio Section -->
+            <div>
+                <p>Bio:</p>
+                <textarea name="bio" rows="4" cols="50"><?php echo htmlspecialchars($bio); ?></textarea>
+            </div>
         </div>
+    </form>
 
-        <!-- Bio Section -->
-        <div>
-            <p>Bio:</p>
-            <textarea name="bio" rows="4" cols="50"><?php echo htmlspecialchars($bio); ?></textarea>
-        </div>
-    </div>
-</form>
-
-<script>
-    // JavaScript to preview the uploaded profile image
-    function previewProfileImage(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.querySelector('.circle').style.backgroundImage = `url(${e.target.result})`;
-            };
-            reader.readAsDataURL(file);
+    <script>
+        // JavaScript to preview the uploaded profile image
+        function previewProfileImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.querySelector('.circle').style.backgroundImage = `url(${e.target.result})`;
+                };
+                reader.readAsDataURL(file);
+            }
         }
-    }
-</script>
+    </script>
 
 </body>
+
 </html>

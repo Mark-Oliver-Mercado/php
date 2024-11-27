@@ -91,17 +91,39 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : $the
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
     <link rel="stylesheet" href="../css/settings.css">
     <link rel="stylesheet" href="../css/<?php echo ($theme_color == 'blue') ? 'blue' : 'pink'; ?>.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
+
 <body>
+
+    <header>
+        <h2>Welcome to Your Dashboard, <?php echo $_SESSION['username']; ?>!</h2>
+        <!-- Add the dynamic background image directly to the logout button -->
+        <a href="javascript:void(0)" class="logout" onclick="toggleDropdown()" style="background-image: url('<?php echo $profileImagePath; ?>');"></a>
+
+        <div class="logo d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="../images/logo eels.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+            </a>
+        </div>
+
+        <div id="dropdown" class="dropdown-content">
+            <a href="../php/profile.php">Profile</a>
+            <a href="../php/history.php">History</a>
+            <a href="../php/logout.php">Logout</a>
+        </div>
+    </header>
+
     <div class="container">
         <h2>Account Settings</h2>
-
+        <a href="dashboard.php" class="back-link"><i class="bi bi-arrow-left-circle"></a></i>
         <!-- Update Email Form -->
         <form method="POST" class="form-section">
             <h3>Update Email</h3>
@@ -144,9 +166,9 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : $the
             <button type="submit" name="delete_account" onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</button>
         </form>
 
-        <a href="dashboard.php" class="back-link">Back to Dashboard</a>
-    </div>
-    
-</body>
-</html>
 
+    </div>
+
+</body>
+
+</html>
