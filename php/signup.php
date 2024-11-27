@@ -1,3 +1,68 @@
+<?php
+include 'config.php'; // Database connection file
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $birthday = $_POST['birthday'];
+    $class_status = $_POST['class_status'];
+    $height = $_POST['height'];
+    $weight = $_POST['weight'];
+    $interests = $_POST['interests']; // No need to use implode() as it's a single select
+
+    // Check for minimum password length
+    if (strlen($password) < 8) {
+        echo "<div class='overlay'></div>"; // Overlay background
+        echo "<div class='error-message'>";
+        echo "<h1>Password too short</h1>";
+        echo "<p>Password must be at least 8 characters long. Please <a href='http://localhost/EELS/php/signup.php'>try again</a>.</p>";
+        echo "</div>";
+        exit; // Stop further execution
+    }
+
+    // Hash the password before storing
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Check if email is already registered
+    $sql = "SELECT * FROM users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        echo "<div class='overlay'></div>"; // Overlay background
+        echo "<div class='error-message'>";
+        echo "<h1>Email already exists</h1>";
+        echo "<p>Please <a href='http://localhost/EELS/php/signup.php'>try again</a>.</p>";
+        echo "</div>";
+    } else {
+        // Insert user into the database
+        $sql = "INSERT INTO users (username, email, password, birthday, class_status, height, weight, interest) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssssssss", $username, $email, $hashed_password, $birthday, $class_status, $height, $weight, $interests);
+
+        if ($stmt->execute()) {
+            echo "<div class='overlay'></div>"; // Overlay background
+            echo "<div class='success-message'>";
+            echo "<h1>Signup successful!</h1>";
+            echo "<p><a href='http://localhost/EELS/php/login.php'>Login here</a></p>";
+            echo "</div>";
+        } else {
+            echo "<div class='overlay'></div>";
+            echo "<div class='error-message'>";
+            echo "<h1>Error</h1>";
+            echo "<p>" . $stmt->error . "</p>";
+            echo "</div>";
+        }
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,12 +130,15 @@
             const submitButton = document.getElementById("submitButton");
             const passwordError = document.getElementById("passwordError");
 
-            if (password === confirmPassword) {
-                submitButton.disabled = false; // Enable the submit button
-                passwordError.textContent = ""; // Clear any error message
+            if (password.length < 8) {
+                passwordError.textContent = "Password must be at least 8 characters long.";
+                submitButton.disabled = true;
+            } else if (password !== confirmPassword) {
+                passwordError.textContent = "Passwords do not match.";
+                submitButton.disabled = true;
             } else {
-                submitButton.disabled = true; // Disable the submit button
-                passwordError.textContent = "Passwords do not match."; // Show error message
+                passwordError.textContent = ""; // Clear any error messages
+                submitButton.disabled = false; // Enable the submit button
             }
         }
     </script>

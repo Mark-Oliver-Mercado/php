@@ -15,7 +15,7 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
 </head>
 <body>
 <header id="header">
-        <h2 >Please choose your age</h2>
+        <h2 >Origami</h2>
     </header>
     <section>
     <div class="display1">

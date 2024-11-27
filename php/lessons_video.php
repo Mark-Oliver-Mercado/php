@@ -9,14 +9,20 @@ if (isset($_GET['age'])) {
     exit();
 }
 ?>
+<<<<<<< HEAD
+=======
 
+>>>>>>> aeadfda1038095f533f5744ef7c40ea68303b855
 <?php
 
 // Check if the theme color is set in the session, otherwise default to a preset value (like 'blue')
 $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blue'; // Default to blue theme if not set
 
 ?>
+<<<<<<< HEAD
+=======
 
+>>>>>>> aeadfda1038095f533f5744ef7c40ea68303b855
 <!DOCTYPE html>
 <html lang="en">
 

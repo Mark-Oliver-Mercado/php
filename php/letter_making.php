@@ -15,26 +15,26 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
     <link rel="stylesheet" href="../css/<?php echo ($theme_color == 'blue') ? 'blue' : 'pink'; ?>.css">
 </head>
 <header id="header">
-        <h2 >Please choose your age</h2>
+        <h2 >Letter Making</h2>
     </header>
     <section>
     <div class="display1">
-        <div class="display" onclick="window.location.href='http://localhost/EELS/php/origami_hard.php'">
+        <div class="display" onclick="window.location.href='http://localhost/EELS/letter_making/HappyBirthday.php'">
             <h1>Birthdays</h1>
         </div>
-        <div class="display" onclick="window.location.href='http://localhost/EELS/php/origami_easy.php'">
+        <div class="display" onclick="window.location.href='http://localhost/EELS/letter_making/Valentines.php'">
             <h1>Valentines</h1>
         </div>
-        <div class="display" onclick="window.location.href='http://localhost/EELS/php/origami_hard.php'">
+        <div class="display" onclick="window.location.href='http://localhost/EELS/letter_making/MothersDay.php'">
             <h1>Mothers day</h1>
         </div>
-        <div class="display" onclick="window.location.href='http://localhost/EELS/php/origami_easy.php'">
+        <div class="display" onclick="window.location.href='http://localhost/EELS/letter_making/FatherDay.php'">
             <h1>Fathers day</h1>
         </div>
-        <div class="display" onclick="window.location.href='http://localhost/EELS/php/origami_hard.php'">
+        <div class="display" onclick="window.location.href='http://localhost/EELS/letter_making/Congratulation.php'">
             <h1>Congrats</h1>
         </div>
-        <div class="display" onclick="window.location.href='http://localhost/EELS/php/origami_easy.php'">
+        <div class="display" onclick="window.location.href='http://localhost/EELS/letter_making/GoodLuck.php'">
             <h1>Good luck</h1>
         </div>
     </div>

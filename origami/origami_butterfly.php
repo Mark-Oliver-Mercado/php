@@ -1,3 +1,7 @@
+<?php
+$theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blue'; // Default to blue theme if not set
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Origami Video Tutorial</title>
     <link rel="stylesheet" href="../css/origami.css">
+    <link rel="stylesheet" href="../css/<?php echo ($theme_color == 'blue') ? 'blue' : 'pink'; ?>.css">
 </head>
 <body>
     <div class="container">
@@ -13,7 +18,7 @@
         <!-- Video Tutorial -->
         <div class="video-container">
     <iframe 
-        src="https://www.youtube.com/embed/khuVGbCE0PY"  
+        src="https://www.youtube.com/embed/dvi3_mBs8Zs"  
         title="Origami Tutorial"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
