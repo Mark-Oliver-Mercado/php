@@ -98,6 +98,7 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : $the
     <title>Settings</title>
     <link rel="stylesheet" href="../css/settings.css">
     <link rel="stylesheet" href="../css/<?php echo ($theme_color == 'blue') ? 'blue' : 'pink'; ?>.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -122,7 +123,7 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : $the
 
     <div class="container">
         <h2>Account Settings</h2>
-        <a href="dashboard.php" class="back-link">Back to Dashboard</a>
+        <a href="dashboard.php" class="back-link"><i class="bi bi-arrow-left-circle"></a></i>
         <!-- Update Email Form -->
         <form method="POST" class="form-section">
             <h3>Update Email</h3>

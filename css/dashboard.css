@@ -25,12 +25,7 @@ body {
 
 /* Header Styles */
 header {
-  background-color: rgba(
-    161,
-    215,
-    174,
-    0.879
-  ); /* Light background for header */
+  background-color: rgba(75, 45, 103, 0.879); /* Light background for header */
   padding: 20px;
   text-align: center;
   position: relative;

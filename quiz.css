@@ -70,8 +70,8 @@ form input[type="text"] {
   padding: 15px;
   font-size: 1.2em;
   font-weight: bold;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.2);
+  color: black;
+  background: white;
   border: none;
   border-radius: 8px;
   margin: 10px 0;
