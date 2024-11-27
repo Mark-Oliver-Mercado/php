@@ -1,188 +1,293 @@
 /* Basic Reset */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* Set html and body to 100% height */
-html, body {
-    height: 100%; /* Full height for the body */
+html,
+body {
+  height: 100%; /* Full height for the body */
 }
 
 /* Body Styles */
 body {
-    font-family: Arial, sans-serif;
-    transition: background-image 0.5s ease; /* Smooth transition for background image */
-    background-size: cover; /* Cover entire background */
-    background-position: center center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent image repeating */
-    background-color: rgb(15, 121, 214); /* Fallback background color */
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  transition: background-image 0.5s ease; /* Smooth transition for background image */
+  background-size: cover; /* Cover entire background */
+  background-position: center center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent image repeating */
+  background-color: rgb(15, 121, 214); /* Fallback background color */
+  margin: 0;
+  padding: 0;
 }
 
 /* Header Styles */
 header {
-    background-color: rgba(255, 255, 255, 0.9); /* Light background for header */
-    padding: 20px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: rgba(
+    161,
+    215,
+    174,
+    0.879
+  ); /* Light background for header */
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.logo {
+  height: 150px;
+  width: 70px;
+  image-resolution: 100%;
+  position: absolute;
+  top: 8px;
+  right: 1250px;
 }
 
 h2 {
-    margin: 10px 0;
-    color: #333; /* Darker text color for readability */
+  margin: 10px 0;
+  color: #333; /* Darker text color for readability */
 }
 
 /* Logout Dropdown Button */
 .logout {
-    position: absolute;
-    top: 4px;
-    right: 1260px;
-    color: #fff; /* White text color */
-    background-color: #d9534f; /* Bootstrap danger color for logout */
-    background-image: url('../images/profile.jpg'); /* Replace with your image URL */
-    background-size: cover; /* Ensures the image covers the entire button */
-    background-position: center; /* Centers the image */
-    text-decoration: none;
-    font-weight: bold;
-    padding: 15px;
-    border-radius: 50%; /* Make it a circle */
-    width: 80px; /* Set width and height for the circle */
-    height: 80px;
-    text-align: center;
-    line-height: 50px; /* Vertically center the text */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
-    cursor: pointer; /* Make it clickable */
+  position: absolute;
+  top: 8px;
+  right: 30px;
+  color: #fff; /* White text color */
+  background-color: lightgrey; /* Bootstrap danger color for logout */
+  background-image: url("../images/profile.jpg"); /* Replace with your image URL */
+  background-size: cover; /* Ensures the image covers the entire button */
+  background-position: center; /* Centers the image */
+  border: 2pt solid black;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 50%; /* Make it a circle */
+  width: 70px; /* Set width and height for the circle */
+  height: 70px;
+  text-align: center;
+  line-height: 50px; /* Vertically center the text */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  cursor: pointer; /* Make it clickable */
 }
 
 /* Hover state for logout button */
 .logout:hover {
-    background-color: #c9302c; /* Darker shade on hover */
+  background-color: rgb(165, 165, 165); /* Darker shade on hover */
 }
 
 /* Dropdown Content (Menu) */
 .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 90px !important;
-    right: 1200px !important;
-    background-color: #f9f9f9; /* Light background color */
-    min-width: 160px; /* Adjust width as needed */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    right: 0;
-    border-radius: 5px;
+  display: none;
+  position: absolute;
+  top: 90px !important;
+  right: 2px !important;
+  background-color: #f9f9f9; /* Light background color */
+  min-width: 160px; /* Adjust width as needed */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 100px;
+  border-radius: 5px;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 /* Change color on hover */
 .dropdown-content a:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
 /* Show the dropdown content when the logout button is clicked */
 .show {
-    display: block;
+  display: block;
 }
 
 /* Custom File Upload Button Styles */
 .bg {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 /* Hide the default file input */
 #backgroundImageInput {
-    display: none; /* Hide the input element */
+  display: none; /* Hide the input element */
 }
 
 .custom-file-upload {
-    display: inline-block;
-    padding: 10px 20px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: black;
-    border-radius: 5px;
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: black;
+  border-radius: 5px;
 }
 
 .custom-file-upload:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+  background-color: #0056b3; /* Darker shade on hover */
 }
 
 /* Section Styles */
 section {
-    display: flex;
-    justify-content: center; /* Center display items */
-    margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Center display items */
+  margin-top: 20px;
 }
 
 /* Flex Container for the Displays */
 .display1 {
-    display: flex;
-    justify-content: space-around; /* Distribute space around the items */
-    flex-wrap: wrap; /* Wrap items on smaller screens */
-    width: 80%; /* Adjust width as needed */
+  display: flex;
+  justify-content: space-around; /* Distribute space around the items */
+  flex-wrap: wrap; /* Wrap items on smaller screens */
+  width: 80%; /* Adjust width as needed */
 }
 
-/* Individual Display Boxes */
-.display {
-    width: 30%; /* Adjust width as needed */
-    height: 200px;
-    padding: 90px 20px 20px 20px;
-    margin-top:20px ;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
-    border-radius: 10px;
-    backdrop-filter: blur(10px); /* Blurs the content behind the div */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
-    color: black;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional border */
+.display-quiz {
+  width: 30%; /* Adjust width as needed */
+  height: 200px;
+  padding: 90px 20px 20px 20px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  color: black;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-image: url("../images/quiz.png");
+  background-position: center;
+  background-size: 400px 250px;
 }
 
-.display:hover {
-    transform: scale(1.05); /* Enlarge on hover */
-    background-color: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
-    z-index: 10; /* Ensure the hovered box appears above other content */
+.display-quiz:hover {
+  transform: scale(1.05); /* Enlarge on hover */
+  z-index: 10; /* Ensure the hovered box appears above other content */
+}
+
+.display-video {
+  width: 30%; /* Adjust width as needed */
+  height: 200px;
+  padding: 90px 20px 20px 20px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  color: black;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition */
+  background-color: #000644;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-image: url("../images/video.png");
+  background-position: center;
+  background-size: 350px 205px;
+}
+
+.display-video:hover {
+  transform: scale(1.05); /* Enlarge on hover */
+  z-index: 10; /* Ensure the hovered box appears above other content */
+}
+
+.display-iden {
+  width: 30%; /* Adjust width as needed */
+  height: 200px;
+  padding: 90px 20px 20px 20px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  color: black;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-image: url("../images/iden.png");
+  background-position: center;
+  background-size: 490px 300px;
+}
+
+.display-iden:hover {
+  transform: scale(1.05); /* Enlarge on hover */
+  z-index: 10; /* Ensure the hovered box appears above other content */
+}
+
+.display-origami {
+  width: 30%; /* Adjust width as needed */
+  height: 200px;
+  padding: 90px 20px 20px 20px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  color: black;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-image: url("../images/origami.png");
+  background-position: center;
+  background-size: 370px 270px;
+}
+
+.display-origami:hover {
+  transform: scale(1.05); /* Enlarge on hover */
+  z-index: 10; /* Ensure the hovered box appears above other content */
+}
+
+.display-letter {
+  width: 30%; /* Adjust width as needed */
+  height: 200px;
+  padding: 90px 20px 20px 20px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  color: black;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-image: url("../images/letter.avif");
+  background-position: center;
+  background-size: 280px 200px;
+}
+
+.display-letter:hover {
+  transform: scale(1.05); /* Enlarge on hover */
+  z-index: 10; /* Ensure the hovered box appears above other content */
 }
 
 .back-button {
-    padding: 15px 30px;
-    font-size: 1.2em;
-    color: #fff;
-    background-color: #28a745; /* Bootstrap success color */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
-    margin-left: 615px;
-    position: relative;
-    top: 10px;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  color: #fff;
+  background-color: #28a745; /* Bootstrap success color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+  margin-left: 615px;
+  position: relative;
+  top: 10px;
 }
 
 .back-button:hover {
-    background-color: #218838; /* Darker green on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+  background-color: #218838; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
 }
+
 #header {
-    text-align: center;
-    background-color: #4b0082; /* Dark indigo background */
-    color: #fff;
-    padding: 20px;
+  text-align: center;
+  background-color: #4b0082; /* Dark indigo background */
+  color: #fff;
+  padding: 20px;
 }
 
 #header h2 {
-    margin: 0;
-    font-size: 1.8em;
-    color: #fff;
+  margin: 0;
+  font-size: 1.8em;
+  color: #fff;
 }

@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+// Mark the quiz as completed
+$_SESSION['quiz_completed'] = true;
+
 // Ensure the quiz has been taken
 if (!isset($_SESSION['answers']) || !isset($_SESSION['age']) || !isset($_SESSION['lesson'])) {
     header('Location: select_age.php'); // Redirect if no answers or age/lesson are present
@@ -60,6 +63,7 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,13 +71,14 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
     <link rel="stylesheet" href="../quiz.css">
     <link rel="stylesheet" href="../css/<?php echo ($theme_color == 'blue') ? 'blue' : 'pink'; ?>.css">
 </head>
+
 <body>
     <header class="quiz-header">
         <h2>Quiz Results</h2>
     </header>
     <section class="quiz-score">
-        <h3>Your Score: <?php echo $score; ?> out of <?php echo count($results); ?></h3>
-        <button onclick="window.location.href='http://localhost/EELS/php/select_age.php'" class="quiz-button">Take Another Quiz</button>
+        <h3>Your Score: <?php echo $score; ?> / <?php echo count($results); ?></h3>
+        <button onclick="window.location.href='http://localhost/EELS/php/lessons_quiz.php?age=7'" class="quiz-button"> Next Lesson </button>
     </section>
     <section class="quiz-results">
         <h3>Your Answers</h3>
@@ -97,6 +102,10 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
         </table>
     </section>
     <script>
-</script>
+    </script>
+
+    <button onclick="window.location.href='http://localhost/EELS/php/lessons_quiz.php?age=7'" class="done-button">Done</button>
+
 </body>
+
 </html>

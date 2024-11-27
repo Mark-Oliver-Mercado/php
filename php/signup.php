@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
-    <link rel="stylesheet" href="../signin.css">
+    <link rel="stylesheet" href="../css/signup.css">
 </head>
+
 <body>
     <div class="container">
         <h2>Sign Up</h2>
@@ -73,6 +75,7 @@
         }
     </script>
 </body>
+
 </html>
 <?php
 include 'config.php'; // Database connection file
@@ -108,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql = "INSERT INTO users (username, email, password, birthday, class_status, height, weight, interest) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ssssssss", $username, $email, $hashed_password, $birthday, $class_status, $height, $weight, $interests);
-        
+
         if ($stmt->execute()) {
             echo "<div class='overlay'></div>"; // Overlay background
             echo "<div class='success-message'>";
