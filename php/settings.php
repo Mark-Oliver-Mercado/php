@@ -1,6 +1,5 @@
 <?php
 session_start(); // Start the session
-
 include '../php/config.php'; // Include the database connection file
 
 // Check if the user is logged in
@@ -11,18 +10,21 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['id'])) {
 
 // Fetch user data from the database
 $user_id = $_SESSION['id'];
-$query = "SELECT username, email, theme_color, height, weight, class_status, interest FROM users WHERE id = ?";
+$query = "SELECT username, email, theme_color, height, weight, class_status, interest, profile_image FROM users WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
-$stmt->bind_result($username, $email, $theme_color, $height, $weight, $class_status, $interest);
+$stmt->bind_result($username, $email, $theme_color, $height, $weight, $class_status, $interest, $profileImagePath);
 $stmt->fetch();
 $stmt->close();
 
-// Update email logic
+// Set default profile image if none is provided
+$profileImagePath = $profileImagePath ? '../uploads/' . $profileImagePath : '../images/default-profile.png';
+
+// Handle email update
 if (isset($_POST['update_email'])) {
     $newEmail = $_POST['email'];
-    if ($newEmail !== $email) {
+    if ($newEmail !== $email && filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
         $query = "UPDATE users SET email = ? WHERE id = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("si", $newEmail, $user_id);
@@ -34,11 +36,11 @@ if (isset($_POST['update_email'])) {
         }
         $stmt->close();
     } else {
-        echo "<div class='overlay'></div><div class='error-message'>New email is the same as the current email.<a href='settings.php'>Ok</a></div>";
+        echo "<div class='overlay'></div><div class='error-message'>Invalid email format.<a href='settings.php'>Ok</a></div>";
     }
 }
 
-// Update profile info logic (name, height, weight, status, interest)
+// Handle profile updates (name, height, weight, status, interest)
 if (isset($_POST['update_profile'])) {
     $newUsername = $_POST['username'];
     $newHeight = $_POST['height'];
@@ -46,21 +48,24 @@ if (isset($_POST['update_profile'])) {
     $newClassStatus = $_POST['class_status'];
     $newInterest = $_POST['interest'];
 
-    // Update profile info in the database
-    $query = "UPDATE users SET username = ?, height = ?, weight = ?, class_status = ?, interest = ? WHERE id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("sssssi", $newUsername, $newHeight, $newWeight, $newClassStatus, $newInterest, $user_id);
-    if ($stmt->execute()) {
-        $username = $newUsername;
-        $height = $newHeight;
-        $weight = $newWeight;
-        $class_status = $newClassStatus;
-        $interest = $newInterest;
-        echo "<div class='overlay'></div><div class='success-message'>Profile updated successfully.<a href='settings.php'>Ok</a></div>";
+    if (is_numeric($newHeight) && is_numeric($newWeight)) {
+        $query = "UPDATE users SET username = ?, height = ?, weight = ?, class_status = ?, interest = ? WHERE id = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("sssssi", $newUsername, $newHeight, $newWeight, $newClassStatus, $newInterest, $user_id);
+        if ($stmt->execute()) {
+            $username = $newUsername;
+            $height = $newHeight;
+            $weight = $newWeight;
+            $class_status = $newClassStatus;
+            $interest = $newInterest;
+            echo "<div class='overlay'></div><div class='success-message'>Profile updated successfully.<a href='settings.php'>Ok</a></div>";
+        } else {
+            echo "<div class='overlay'></div><div class='error-message'>Error updating profile.<a href='settings.php'>Ok</a></div>";
+        }
+        $stmt->close();
     } else {
-        echo "<div class='overlay'></div><div class='error-message'>Error updating profile.<a href='settings.php'>Ok</a></div>";
+        echo "<div class='overlay'></div><div class='error-message'>Height and Weight must be numeric.<a href='settings.php'>Ok</a></div>";
     }
-    $stmt->close();
 }
 
 // Handle theme update
@@ -71,10 +76,8 @@ if (isset($_POST['update_theme'])) {
         $stmt = $conn->prepare($query);
         $stmt->bind_param("si", $themeColor, $user_id);
         if ($stmt->execute()) {
-            // Save the theme in the session for immediate use
-            $_SESSION['theme_color'] = $themeColor;
-            // Redirect back to refresh the page
-            header("Location: settings.php");
+            $_SESSION['theme_color'] = $themeColor; // Save the theme in the session
+            header("Location: settings.php"); // Refresh the page
             exit();
         } else {
             echo "<div class='overlay'></div><div class='error-message'>Error updating theme.<a href='settings.php'>Ok</a></div>";
@@ -85,10 +88,24 @@ if (isset($_POST['update_theme'])) {
     }
 }
 
-// Check for the theme stored in the session or database
+// Delete account logic (optional)
+if (isset($_POST['delete_account'])) {
+    $query = "DELETE FROM users WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $user_id);
+    if ($stmt->execute()) {
+        session_destroy();
+        header("Location: goodbye.php");
+        exit();
+    } else {
+        echo "<div class='overlay'></div><div class='error-message'>Error deleting account.<a href='settings.php'>Ok</a></div>";
+    }
+    $stmt->close();
+}
+
+// Check theme stored in session or database
 $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : $theme_color;
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,16 +119,15 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : $the
 </head>
 
 <body>
-
     <header>
         <h2>Welcome to Your Dashboard, <?php echo $_SESSION['username']; ?>!</h2>
         <!-- Add the dynamic background image directly to the logout button -->
         <a href="javascript:void(0)" class="logout" onclick="toggleDropdown()" style="background-image: url('<?php echo $profileImagePath; ?>');"></a>
 
         <div class="logo d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <img src="../images/logo eels.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
-            </a>
+
+            <img src="../images/logo eels.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+
         </div>
 
         <div id="dropdown" class="dropdown-content">
@@ -123,35 +139,29 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : $the
 
     <div class="container">
         <h2>Account Settings</h2>
-        <a href="dashboard.php" class="back-link"><i class="bi bi-arrow-left-circle"></a></i>
-        <!-- Update Email Form -->
-        <form method="POST" class="form-section">
+        <a href="dashboard.php" class="back-link"><i class="bi bi-arrow-left-circle"></i></a>
+
+        <!-- Update Email -->
+        <form method="POST">
             <h3>Update Email</h3>
-            <label for="email">Current Email:</label>
             <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
             <button type="submit" name="update_email">Update Email</button>
         </form>
 
-        <!-- Update Profile Info Form -->
-        <form method="POST" class="form-section">
-            <h3>Update Profile Information</h3>
-            <label for="username">Name:</label>
+        <!-- Update Profile -->
+        <form method="POST">
+            <h3>Update Profile</h3>
             <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
-            <label for="height">Height (in cm):</label>
             <input type="number" name="height" value="<?php echo htmlspecialchars($height); ?>" required>
-            <label for="weight">Weight (in kg):</label>
             <input type="number" name="weight" value="<?php echo htmlspecialchars($weight); ?>" required>
-            <label for="class_status">Class Status:</label>
             <input type="text" name="class_status" value="<?php echo htmlspecialchars($class_status); ?>" required>
-            <label for="interest">Interests:</label>
             <input type="text" name="interest" value="<?php echo htmlspecialchars($interest); ?>" required>
             <button type="submit" name="update_profile">Update Profile</button>
         </form>
 
-        <!-- Theme Selection Form -->
-        <form method="POST" class="form-section">
-            <h3>Choose Theme Color</h3>
-            <label for="theme_color">Select Theme:</label>
+        <!-- Change Theme -->
+        <form method="POST">
+            <h3>Change Theme</h3>
             <select name="theme_color">
                 <option value="blue" <?php echo ($theme_color == 'blue') ? 'selected' : ''; ?>>Blue</option>
                 <option value="pink" <?php echo ($theme_color == 'pink') ? 'selected' : ''; ?>>Pink</option>
@@ -159,16 +169,32 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : $the
             <button type="submit" name="update_theme">Save Theme</button>
         </form>
 
-        <!-- Delete Account Form -->
-        <form method="POST" class="form-section">
+        <!-- Delete Account -->
+        <form method="POST">
             <h3>Delete Account</h3>
-            <p>This action cannot be undone. Are you sure you want to delete your account?</p>
             <button type="submit" name="delete_account" onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</button>
         </form>
-
-
     </div>
+    <script>
+        // Toggle the dropdown menu when the logout button is clicked
+        function toggleDropdown() {
+            var dropdown = document.getElementById("dropdown");
+            dropdown.classList.toggle("show");
+        }
 
+        // Close the dropdown if the user clicks anywhere outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.logout') && !event.target.matches('.dropdown-content') && !event.target.matches('.dropdown-content a')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -48,3 +48,7 @@ h3 {
 .back-link:hover {
   color: #01579b;
 }
+
+#header h2 {
+  color: #6db4cb;
+}

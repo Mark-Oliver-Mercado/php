@@ -2,16 +2,14 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-session_start();
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+// Include Composer's autoloader
 require '../vendor/autoload.php';
 
-// Check if user confirms logout
+session_start();
+
 if (isset($_GET['confirm'])) {
     if ($_GET['confirm'] === 'yes') {
         // Check if the session email exists
@@ -24,32 +22,32 @@ if (isset($_GET['confirm'])) {
         session_unset();  // Unset session variables
         session_destroy(); // Destroy session
 
+        // Create a new PHPMailer instance
         $mail = new PHPMailer(true);
 
         try {
             // Mail settings
             $mail->isSMTP();
-            $mail->Host       = 'smtp.gmail.com';
+            $mail->Host       = 'smtp.gmail.com'; // Gmail's SMTP server
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'markolivermercado101@gmail.com';
-            $mail->Password   = 'ruxl vjfn xffb beql';  // Your Gmail app password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = 587;
+            $mail->Username   = 'markolivermercado101@gmail.com'; // Your Gmail address
+            $mail->Password   = 'xbqe hoqc kigr qmhv';  // Gmail App Password
+            $mail->Port = 465; // For SSL
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL encryption
+
 
             // Recipients
             $mail->setFrom('markolivermercado101@gmail.com', 'Mailer');
-            $mail->addAddress($user_email);
+            $mail->addAddress($user_email); // Add recipient email address
 
-            // Content OF EMAIL
+            // Content
             $mail->isHTML(true);
             $mail->Subject = 'Logout Confirmation';
             $mail->Body    = 'Hello, you have successfully logged out from your account.';
 
-            // Send email
+            // Send the email
             $mail->send();
             echo "<script>alert('Logout successful. A confirmation email has been sent to $user_email.');</script>";
-
-            // Redirect to main page after sending the email
             header("Refresh: 2; url=mainpage.php");
             exit();
         } catch (Exception $e) {
@@ -57,20 +55,22 @@ if (isset($_GET['confirm'])) {
         }
     } elseif ($_GET['confirm'] === 'no') {
         // Redirect to the dashboard if the user chooses "No"
-        header("Location: dashboard.php");
+        header("Location: mainpage.php");
         exit();
     }
 } else {
     // If no confirmation parameter is set, display the confirmation form
-    ?>
+?>
     <!DOCTYPE html>
     <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Logout Confirmation</title>
         <link rel="stylesheet" href="../css/logout.css">
     </head>
+
     <body>
         <div class="container">
             <h2>Logout Confirmation</h2>
@@ -81,7 +81,8 @@ if (isset($_GET['confirm'])) {
             </div>
         </div>
     </body>
+
     </html>
-    <?php
+<?php
 }
 ?>

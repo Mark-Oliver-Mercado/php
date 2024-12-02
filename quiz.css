@@ -26,7 +26,7 @@ header {
   text-align: center;
   color: #fff;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #00555a;
   width: 100%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -110,8 +110,8 @@ form input[type="text"]:focus {
 .quiz-header {
   text-align: center;
   padding: 20px;
-  background-color: #4b0082;
-  color: #fff;
+  background-color: #00555a;
+  color: #ffffff;
   margin-bottom: 20px;
   width: 100%; /* Full width to avoid overflow */
 }
@@ -125,7 +125,7 @@ form input[type="text"]:focus {
 .quiz-score {
   text-align: center;
   margin: 20px auto;
-  background-color: #e0e7ff;
+  background-color: #ffffffd7;
   border-radius: 8px;
   padding: 20px;
   max-width: 80%;
@@ -143,15 +143,15 @@ form input[type="text"]:focus {
   cursor: pointer;
   backdrop-filter: blur(10px);
   transition: transform 0.2s ease, background-color 0.3s ease;
-  background: linear-gradient(135deg, #4b0082, #6a0dad); /* Indigo gradient */
+  background: linear-gradient(135deg, #218838, #28a745); /* Indigo gradient */
 }
 
 .quiz-button:hover {
   transform: scale(1.05);
   background: linear-gradient(
     135deg,
-    #6a0dad,
-    #8a2be2
+    #28a745,
+    #218838
   ); /* Lighter gradient on hover */
 }
 
@@ -163,7 +163,7 @@ form input[type="text"]:focus {
 /* Results Table */
 .results-table {
   width: 90%;
-  max-width: 600px;
+  max-width: 700px;
   margin: 20px auto;
   border-collapse: collapse;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -178,13 +178,14 @@ form input[type="text"]:focus {
 }
 
 .results-table th {
-  background-color: #4b0082;
-  color: #fff;
+  background-color: #00555a;
+  color: #ffffff;
   font-size: 1.1em;
 }
 
 .results-table td {
   font-size: 1em;
+  font-weight: bold;
 }
 
 .results-table tr:nth-child(even) {
@@ -193,38 +194,11 @@ form input[type="text"]:focus {
 
 /* Result Row Colors */
 .results-table tr.correct td {
-  background-color: #d4edda; /* Light green for correct answers */
-  color: #155724;
+  background-color: rgb(73, 216, 111);
+  color: #000000;
 }
 
 .results-table tr.wrong td {
-  background-color: #f8d7da; /* Light red for incorrect answers */
-  color: #721c24;
-}
-
-.done-button {
-  padding: 15px 25px;
-  font-size: 1.2em;
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.2);
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-  transition: transform 0.2s ease, background-color 0.3s ease;
-  background: linear-gradient(135deg, #4b0082, #6a0dad); /* Indigo gradient */
-}
-
-.done-button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(
-    135deg,
-    #6a0dad,
-    #8a2be2
-  ); /* Lighter gradient on hover */
-}
-
-.done-button:focus {
-  outline: none;
-  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+  background-color: white;
+  color: #da0016;
 }

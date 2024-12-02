@@ -25,12 +25,7 @@ body {
 
 /* Header Styles */
 header {
-  background-color: rgba(
-    161,
-    215,
-    174,
-    0.879
-  ); /* Light background for header */
+  background-color: rgba(75, 45, 103, 0.879);
   padding: 20px;
   text-align: center;
   position: relative;
@@ -84,7 +79,7 @@ h2 {
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 90px !important;
+  top: 100px !important;
   right: 2px !important;
   background-color: #f9f9f9; /* Light background color */
   min-width: 160px; /* Adjust width as needed */
@@ -136,11 +131,15 @@ h2 {
 }
 
 .card-header {
-  height: 85px;
+  height: 80px;
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   position: relative;
+}
+
+.card-body {
+  height: 200px;
 }
 
 .print-button {

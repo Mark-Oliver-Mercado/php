@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 150vh;
+  height: 500px;
 }
 
 /* Container for the form */
@@ -19,7 +19,7 @@ body {
   width: 450px;
   max-width: 100%;
   text-align: center;
-  height: 100vh;
+  height: 90vh;
 }
 
 /* Background container */
@@ -189,4 +189,26 @@ textarea:focus {
     width: 120px;
     height: 120px;
   }
+}
+
+.button-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #ffe0b2;
+}
+
+.back-button {
+  padding: 12px 25px;
+  font-size: 1.1em;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
 }

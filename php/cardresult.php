@@ -107,7 +107,6 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
 
     </script>
 
-    <button onclick="window.location.href='http://localhost/EELS/php/lessons_card.php?age=7'" class="done-button">Done</button>
 </body>
 
 </html>

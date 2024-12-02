@@ -139,6 +139,8 @@ if (!$bio) {
                 <textarea name="bio" rows="4" cols="50"><?php echo htmlspecialchars($bio); ?></textarea>
             </div>
         </div>
+
+
     </form>
 
     <script>

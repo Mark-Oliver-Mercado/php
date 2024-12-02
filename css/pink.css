@@ -5,7 +5,7 @@ body {
 }
 
 h2 {
-  color: #e87cab; /* A slightly darker pink */
+  color: #e87cab;
 }
 
 .container {
@@ -47,4 +47,8 @@ h3 {
 
 .back-link:hover {
   color: #c2185b;
+}
+
+#header h2 {
+  color: #e87cab;
 }
