@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h2>Login</h2>
         <form id="loginForm" action="login.php" method="POST">
             <label for="email">Email</label>
-            <input type="email" name="email" required value="" autocomplete="off">
+            <input type="email" name="email" required value="" autocomplete="on">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
             <div class="show-password-container">

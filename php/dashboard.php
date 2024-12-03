@@ -98,6 +98,8 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
             }
         }
     </script>
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="a6d3d89a-c38b-4381-b39d-ee16279216e0";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
 </body>
 
 </html>

@@ -9,7 +9,7 @@ if (!isset($_SESSION['answers']) || !isset($_SESSION['age']) || !isset($_SESSION
 
 // Database connection
 $host = 'localhost'; // Your database host
-$dbname = 'data_database'; // Your database name
+$dbname = 'card_database'; // Your database name
 $username = 'root'; // Your database username
 $password = ''; // Your database password
 
@@ -25,7 +25,8 @@ $age = $_SESSION['age'];
 $lesson = $_SESSION['lesson'];
 
 // Database query to fetch correct answers for the specific age and lesson
-$query = $pdo->prepare("SELECT correct_option FROM quiz_age_" . $age . "_lesson_" . $lesson);
+$table_name = "card_age_" . $age . "_lesson_" . $lesson; // Adjusted to match your table name
+$query = $pdo->prepare("SELECT correct_option FROM " . $table_name);
 $query->execute();
 $correct_answers = $query->fetchAll(PDO::FETCH_COLUMN);
 
@@ -78,7 +79,7 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
     </header>
     <section class="quiz-score">
         <h3>Your Score: <?php echo $score; ?> out of <?php echo $answered_count; ?></h3>
-        <button onclick="window.location.href='http://localhost/EELS/php/lessons_card.php?age=7'" class="quiz-button"> Next Lesson </button>
+        <button onclick="window.location.href='http://localhost/EELS/php/lessons_card.php?age=<?php echo $age; ?>'" class="quiz-button"> Next Lesson </button>
     </section>
     <section class="quiz-results">
         <h3>Your Answers</h3>
