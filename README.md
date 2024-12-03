@@ -427,21 +427,21 @@ INSERT INTO video_age_7_lesson_1 (question_text, option_a, option_b, option_c, o
 
 
  Create card_database;
- CREATE TABLE card_age_7_lesson_2 (
+ CREATE TABLE card_age_7_lesson_1 (
     id INT AUTO_INCREMENT PRIMARY KEY,
     question_text TEXT NOT NULL,
     option_a VARCHAR(255) NOT NULL,
     option_b VARCHAR(255) NOT NULL,
     option_c VARCHAR(255) NOT NULL,
     option_d VARCHAR(255) NOT NULL,
-    correct_option CHAR(1) NOT NULL,
+    correct_option VARCHAR(255) NOT NULL,
 );
-INSERT INTO car_age_7_lesson_2 (question_text, option_a, option_b, option_c, option_d, correct_option) VALUES
-('What is the capital of France?', 'Berlin', 'Madrid', 'Paris', 'Rome', 'C'),
-('Which animal is known as the King of the Jungle?', 'Elephant', 'Lion', 'Tiger', 'Bear', 'B'),
-('What is 5 + 3?', '5', '8', '10', '3', 'B'),
-('What color do you get when you mix red and white?', 'Pink', 'Blue', 'Purple', 'Yellow', 'A'),
-('Which planet is known as the Red Planet?', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'B');
+INSERT INTO car_age_7_lesson_1 (question_text, option_a, option_b, option_c, option_d, correct_option) VALUES
+('What is the capital of France?', 'Berlin', 'Madrid', 'Paris', 'Rome', 'Paris'),
+('Which animal is known as the King of the Jungle?', 'Elephant', 'Lion', 'Tiger', 'Bear', 'Lion'),
+('What is 5 + 3?', '5', '8', '10', '3', '8'),
+('What color do you get when you mix red and white?', 'Pink', 'Blue', 'Purple', 'Yellow', 'Pink'),
+('Which planet is known as the Red Planet?', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Mars');
  
 
 
