@@ -16,6 +16,13 @@
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+  </style>
 </head>
 
 <header class="p-3">
@@ -27,6 +34,7 @@
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a href="#" class="home nav-link px-0 text-secondary">Home</a></li>
+        <li><a href="#" class="survey px--2 nav-link text-black">Survey</a></li>
         <li><a href="#about" class="about px--2 nav-link text-black">About</a></li>
       </ul>
     </div>
@@ -56,13 +64,16 @@
   <br>
   <br>
   <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
 
   <section id="about">
     <div class="container-fluid col-xxl-8 px-4 py-3">
       <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div class="image col-10 col-sm-8 col-lg-6">
-          <img src="../images/aboutus.jpeg" class="d-block mx-lg-auto" width="630" height="500" loading="lazy">
-        </div>
         <div class="col-lg-6">
           <h1 class="title display-5 fw-bold text-body-emphasis lh-1 mb-3">About Us</h1>
           <p class="lead">Unlock the fun of learning English with EELS designed for kids ages 7-13! With interactive lessons, and personalized progress tracking, kids can improve their vocabulary, grammar, and reading skills in a fun and engaging way. Join thousands of young learners who are boosting their confidence in English every day. Start today and watch your child grow into a fluent English speaker!</p>
@@ -71,7 +82,42 @@
     </div>
   </section>
 
+  <section class="mapping">
 
+    <div class="map-description">
+      <h3>Batangas State University Library</h3>
+    </div>
+
+    <!-- Map Container -->
+    <div id="map"></div>
+
+    <!-- Link to Leaflet.js JS Library -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+      // Initialize the map centered on Batangas State University Malvar Campus
+      const map = L.map('map').setView([14.044824, 121.156304], 10); // Coordinates for Batangas State University Malvar Campus
+
+      // Set the tile layer to OpenStreetMap
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      // Add a marker for Batangas State University Malvar Campus
+      const marker1 = L.marker([14.044824, 121.156304]).addTo(map);
+      marker1.bindPopup("<b>Batangas State University - Malvar Campus");
+
+      // Add another marker for a different location
+      const marker2 = L.marker([13.956872, 121.163120]).addTo(map);
+      marker2.bindPopup("<b>Batangas State University - Lipa Campus");
+
+      const marker3 = L.marker([13.846757, 121.196687]).addTo(map);
+      marker3.bindPopup("<b>Batangas State University - Rosario Campus");
+
+      const marker4 = L.marker([13.754171, 121.053023]).addTo(map);
+      marker4.bindPopup("<b>Batangas State University - Pablo Borbon Campus");
+    </script>
+  </section>
 
 </body>
 

@@ -68,6 +68,7 @@ li {
   background-color: rgba(244, 244, 244, 0.798);
   border-radius: 20px;
   backdrop-filter: blur(8px);
+  height: 600px;
 }
 
 .title {
@@ -80,14 +81,51 @@ li {
   font-size: 15pt !important;
 }
 
+.description {
+  margin-left: 280px;
+  padding-bottom: 50px;
+  z-index: 9999;
+}
+
 .home {
   padding: 8px !important;
   margin-left: -100px !important;
   font-size: 20px !important;
 }
 
-.about {
+.survey {
   padding: 8px !important;
-  margin-left: -300px !important;
+  margin-left: -330px !important;
   font-size: 20px !important;
+}
+
+.about {
+  padding: 9px !important;
+  margin-left: -550px !important;
+  font-size: 20px !important;
+}
+
+.mapping {
+  width: 500px; /* 50% of the viewport width */
+  height: 100px; /* 50% of the viewport height */
+  bottom: 518px;
+  margin-left: 150px;
+  position: relative; /* For proper centering */
+  transform: translateY(-50%); /* Center vertically */
+  border: 2px solid #ccc; /* Optional: to give it a border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: for a shadow effect */
+}
+
+.map-description {
+  text-align: center;
+  margin-bottom: 5px; /* Space between the description and the map */
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.map-description h3 {
+  font-family: "Lilita One", sans-serif;
+  font-size: 1.5rem;
+  color: #333; /* Adjust color as needed */
+  margin: 0;
 }
