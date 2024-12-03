@@ -103,7 +103,7 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
         <h3><?php echo htmlspecialchars($current_question['question_text']); ?></h3>
         <form method="POST" action="" autocomplete="off">
             <!-- Disable autofill for this input field -->
-            <input type="text" name="answer" placeholder="Type your answer (A, B, C, or D)" value="" autocomplete="off">
+            <input type="text" name="answer" placeholder="Type your answer..... )" value="" autocomplete="off">
             <button type="submit" name="submit_answer">Submit Answer</button>
             <button type="submit" name="end_quiz">End Quiz</button>
         </form>
