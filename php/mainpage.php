@@ -24,59 +24,57 @@
     }
   </style>
 </head>
-
-<header class="p-3">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <img src="../images/logo eels.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
-      </a>
-
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="home nav-link px-0 text-secondary">Home</a></li>
-        <li><a href="#" class="survey px--2 nav-link text-black">Survey</a></li>
-        <li><a href="#about" class="about px--2 nav-link text-black">About</a></li>
-      </ul>
-    </div>
+<header>
+  <div class="logo">
+    <a href="#" class="d-flex">
+      <img src="../images/logo eels.png" alt="Logo" id="logo">
+    </a>
+  </div>
+  <div>
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <li><a href="#" class="home nav-link px-0 text-secondary">Home</a></li>
+      <li><a href="#about" class="about px--2 nav-link text-black">About</a></li>
+      <li><a href="#" class="contact px--2 nav-link text-black">Contacts</a></li>
+    </ul>
   </div>
 </header>
 
+
 <body>
-  <h1>Welcome to EELS</h1>
-  <p>
-    Improve your English in a fun, friendly way! Our app is perfect for kids
-    ages 7-13, offering interactive quizzes, stories, and challenges to help
-    you learn new words, practice speaking, and build confidence. Join
-    thousands of young learners who are building strong English skills while
-    having fun every day!
-  </p>
-
-
-  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-    <button type="button" class="btn btn-primary btn-lg px-4 gap-3" onclick="window.location.href='http://localhost/EELS/php/login.php'">SignIn</button>
-    <button type="button" class="btn btn-outline-secondary btn-lg px-4" onclick="window.location.href='http://localhost/EELS/php/signup.php'">Signup</button>
+  <div>
+    <h1 class="name">Welcome to EELS</h1>
+    <div>
+      <p class="descri"> Improve your English in a fun, friendly way! Our app is perfect for kids
+        ages 7-13, offering interactive quizzes, stories, and challenges to help
+        you learn new words, practice speaking, and build confidence. Join
+        thousands of young learners who are building strong English skills while
+        having fun every day!</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3" onclick="window.location.href='http://localhost/EELS/php/login.php'">SignIn</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4" onclick="window.location.href='http://localhost/EELS/php/signup.php'">Signup</button>
+      </div>
+    </div>
   </div>
 
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
 
-
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
   <section id="about">
-    <div class="container-fluid col-xxl-8 px-4 py-3">
-      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div class="col-lg-6">
-          <h1 class="title display-5 fw-bold text-body-emphasis lh-1 mb-3">About Us</h1>
-          <p class="lead">Unlock the fun of learning English with EELS designed for kids ages 7-13! With interactive lessons, and personalized progress tracking, kids can improve their vocabulary, grammar, and reading skills in a fun and engaging way. Join thousands of young learners who are boosting their confidence in English every day. Start today and watch your child grow into a fluent English speaker!</p>
+    <div class="container-fluid col-xl-10 col-xxl-8 px-4 py-5">
+      <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+          <h1 class="title display-4 fw-bold lh-1 text-body-emphasis mb-3">About Us</h1>
+          <p class="lead col-lg-10 fs-4">Unlock the fun of learning English with EELS designed for kids ages 7-13! With interactive lessons, and personalized progress tracking, kids can improve their vocabulary, grammar, and reading skills in a fun and engaging way. Join thousands of young learners who are boosting their confidence in English every day. Start today and watch your child grow into a fluent English speaker!</p>
         </div>
       </div>
     </div>

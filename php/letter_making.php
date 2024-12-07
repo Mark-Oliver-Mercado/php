@@ -42,7 +42,10 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
     </div>
 </section>
 
-<button class="back-button" onclick="window.location.href='dashboard.php'">Go Back</button>
+<div class="back">
+    <button class="back-button" onclick="window.location.href='dashboard.php'">Go Back</button>
+
+</div>
 
 </body>
 

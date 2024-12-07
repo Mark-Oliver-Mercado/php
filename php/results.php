@@ -10,41 +10,41 @@ if (!isset($_SESSION['answers']) || !isset($_SESSION['age']) || !isset($_SESSION
     exit();
 }
 
-// Database connection
-$host = 'localhost';
-$dbname = 'data_database';
-$username = 'root';
-$password = '';
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
-}
-
 // Retrieve age and lesson from the session
 $age = $_SESSION['age'];
 $lesson = $_SESSION['lesson'];
 
-// Database query to fetch correct answers for the specific age and lesson
-$query = $pdo->prepare("SELECT correct_option FROM quiz_age_" . $age . "_lesson_" . $lesson);
+// Database connection for the quiz database
+$host = 'localhost';
+$dbname_quiz = 'data_database';
+$username = 'root';
+$password = '';
+
+try {
+    $pdo_quiz = new PDO("mysql:host=$host;dbname=$dbname_quiz;charset=utf8", $username, $password);
+    $pdo_quiz->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
+}
+
+// Fetch correct answers for the specific age and lesson
+$query = $pdo_quiz->prepare("SELECT correct_option FROM quiz_age_" . $age . "_lesson_" . $lesson);
 $query->execute();
 $correct_answers = $query->fetchAll(PDO::FETCH_COLUMN);
 
-// Calculate the score and results for answered questions only
+// Calculate the score
 $score = 0;
-$results = []; // Array to hold answered question results
+$results = [];
 
 foreach ($_SESSION['answers'] as $index => $answer) {
-    if (!empty($answer)) { // Check if the question was answered
+    if (!empty($answer)) {
         $correct_answer = $correct_answers[$index] ?? null;
         $is_correct = $answer === $correct_answer;
         if ($is_correct) {
             $score++;
         }
         $results[] = [
-            'question_index' => $index + 1, // Assuming questions are 1-indexed for display
+            'question_index' => $index + 1,
             'user_answer' => $answer,
             'correct_answer' => $correct_answer ?? 'N/A',
             'is_correct' => $is_correct,
@@ -54,12 +54,34 @@ foreach ($_SESSION['answers'] as $index => $answer) {
 
 // Clear session variables for a new quiz
 unset($_SESSION['answers'], $_SESSION['age'], $_SESSION['lesson'], $_SESSION['current_question_index'], $_SESSION['score']);
-?>
-<?php
 
-// Check if the theme color is set in the session, otherwise default to a preset value (like 'blue')
-$theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blue'; // Default to blue theme if not set
+// Save quiz results to the user database
+$dbname_user = 'user_database';
 
+try {
+    $pdo_user = new PDO("mysql:host=$host;dbname=$dbname_user;charset=utf8", $username, $password);
+    $pdo_user->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
+}
+
+// Insert the quiz results into the scorelist table
+$current_date = date("Y-m-d H:i:s");
+
+try {
+    $insertQuery = $pdo_user->prepare("
+        INSERT INTO scorelist (username, lesson, date, score) 
+        VALUES (:username, :lesson, :date, :score)
+    ");
+    $insertQuery->execute([
+        ':username' => $_SESSION['username'], // Get username from the session
+        ':lesson' => $lesson,
+        ':date' => $current_date,
+        ':score' => $score,
+    ]);
+} catch (PDOException $e) {
+    die("Failed to save quiz results to the user database: " . $e->getMessage());
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,10 +123,6 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
             </tbody>
         </table>
     </section>
-    <script>
-    </script>
-
-
 </body>
 
 </html>

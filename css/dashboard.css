@@ -33,12 +33,14 @@ header {
 }
 
 .logo {
-  height: 150px;
-  width: 70px;
   image-resolution: 100%;
   position: absolute;
-  top: 8px;
-  right: 1250px;
+  top: 12px;
+}
+
+#logo {
+  height: 70px;
+  width: 70px;
 }
 
 h2 {
@@ -49,7 +51,7 @@ h2 {
 /* Logout Dropdown Button */
 .logout {
   position: absolute;
-  top: 8px;
+  top: 12px;
   right: 30px;
   color: #fff; /* White text color */
   background-color: lightgrey; /* Bootstrap danger color for logout */
@@ -255,6 +257,12 @@ section {
   z-index: 10; /* Ensure the hovered box appears above other content */
 }
 
+.back {
+  display: flex;
+  justify-content: center; /* Center display items */
+  margin: 20px 0px;
+}
+
 .back-button {
   padding: 15px 30px;
   font-size: 1.2em;
@@ -264,9 +272,6 @@ section {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
-  margin-left: 615px;
-  position: relative;
-  top: 10px;
 }
 
 .back-button:hover {
@@ -553,4 +558,90 @@ section {
 .display-goodluck:hover {
   transform: scale(1.05); /* Enlarge on hover */
   z-index: 10; /* Ensure the hovered box appears above other content */
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+  .display-quiz,
+  .display-video,
+  .display-iden,
+  .display-origami,
+  .display-letter,
+  .display-birthday,
+  .display-boat,
+  .display-butterfly,
+  .display-congrats,
+  .display-crane,
+  .display-dragon,
+  .display-father,
+  .display-flower,
+  .display-frog,
+  .display-goodluck,
+  .display-mother,
+  .display-valentines {
+    width: 50%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .display-quiz,
+  .display-video,
+  .display-iden,
+  .display-origami,
+  .display-letter,
+  .display-birthday,
+  .display-boat,
+  .display-butterfly,
+  .display-congrats,
+  .display-crane,
+  .display-dragon,
+  .display-father,
+  .display-flower,
+  .display-frog,
+  .display-goodluck,
+  .display-mother,
+  .display-valentines {
+    margin: 10px 10px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #logo {
+    left: -10px;
+    width: 45px;
+    height: 45px;
+  }
+  .logo {
+    top: 20%;
+  }
+
+  header {
+    text-align: center;
+    padding: 10px;
+  }
+  .logout {
+    top: 20%;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  #logo {
+    left: -10px;
+    width: 55px;
+    height: 55px;
+  }
+  .logo {
+    top: 18%;
+  }
+  .logout {
+    top: 20%;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
 }

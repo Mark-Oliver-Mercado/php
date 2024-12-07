@@ -15,12 +15,14 @@ header {
 }
 
 .logo {
-  height: 150px;
-  width: 70px;
   image-resolution: 100%;
   position: absolute;
-  top: 8px;
-  right: 1250px;
+  top: 12px;
+}
+
+#logo {
+  height: 70px;
+  width: 70px;
 }
 
 h2 {
@@ -31,7 +33,7 @@ h2 {
 /* Logout Dropdown Button */
 .logout {
   position: absolute;
-  top: 8px;
+  top: 12px;
   right: 30px;
   color: #fff; /* White text color */
   background-color: lightgrey; /* Bootstrap danger color for logout */
@@ -43,8 +45,8 @@ h2 {
   font-weight: bold;
   padding: 15px;
   border-radius: 50%; /* Make it a circle */
-  width: 35px; /* Set width and height for the circle */
-  height: 35px;
+  width: 30px; /* Set width and height for the circle */
+  height: 30px;
   text-align: center;
   line-height: 50px; /* Vertically center the text */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
@@ -238,4 +240,43 @@ button:hover {
   margin-top: 10px;
   color: #007bff;
   text-decoration: none;
+}
+
+@media screen and (max-width: 425px) {
+  #logo {
+    left: -10px;
+    width: 45px;
+    height: 45px;
+  }
+  .logo {
+    top: 20%;
+  }
+
+  header {
+    text-align: center;
+    padding: 10px;
+  }
+  .logout {
+    top: 20%;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  #logo {
+    left: -10px;
+    width: 55px;
+    height: 55px;
+  }
+  .logo {
+    top: 18%;
+  }
+  .logout {
+    top: 20%;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+  }
 }

@@ -27,7 +27,7 @@ if (!isset($age) || !isset($lesson)) {
 $_SESSION['lesson'] = intval($lesson);
 
 // Fetch quiz questions based on age and lesson
-$query = $pdo->prepare("SELECT id, question_text, option_a, option_b, option_c, option_d, correct_option 
+$query = $pdo->prepare("SELECT id, passage_text, question_text, option_a, option_b, option_c, option_d, correct_option 
                         FROM quiz_age_" . $age . "_lesson_" . $lesson);
 $query->execute();
 $questions = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -85,10 +85,8 @@ if ($current_question_index >= count($questions)) {
 $current_question = $questions[$current_question_index];
 ?>
 <?php
-
 // Check if the theme color is set in the session, otherwise default to a preset value (like 'blue')
 $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blue'; // Default to blue theme if not set
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,6 +104,12 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
         <h2>Quiz for Age <?php echo htmlspecialchars($age); ?> - Lesson <?php echo htmlspecialchars($lesson); ?></h2>
     </header>
     <section>
+        <!-- Display Passage -->
+        <div class="passage">
+            <h3><?php echo nl2br(htmlspecialchars($current_question['passage_text'])); ?></h3>
+        </div>
+
+        <!-- Display Question -->
         <h3><?php echo htmlspecialchars($current_question['question_text']); ?></h3>
         <form method="POST" action="">
             <button type="submit" name="answer" value="A"><?php echo htmlspecialchars($current_question['option_a']); ?></button>
@@ -115,8 +119,6 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
             <button type="submit" name="end_quiz">End Quiz</button>
         </form>
     </section>
-    <script>
-    </script>
 </body>
 
 </html>

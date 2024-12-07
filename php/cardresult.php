@@ -1,13 +1,22 @@
 <?php
 session_start();
 
+// Check if the user is logged in and if email is set in the session
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
+
 // Ensure the quiz has been taken
 if (!isset($_SESSION['answers']) || !isset($_SESSION['age']) || !isset($_SESSION['lesson'])) {
     header('Location: card_select.php'); // Redirect if no answers or age/lesson are present
     exit();
 }
 
-// Database connection
+// Get logged-in user's email from session
+$username = $_SESSION['username'];
+
+// Database connection for retrieving correct answers
 $host = 'localhost'; // Your database host
 $dbname = 'card_database'; // Your database name
 $username = 'root'; // Your database username
@@ -55,11 +64,33 @@ foreach ($_SESSION['answers'] as $index => $answer) {
 
 // Clear session variables for a new quiz
 unset($_SESSION['answers'], $_SESSION['age'], $_SESSION['lesson'], $_SESSION['current_question_index'], $_SESSION['score']);
-?>
-<?php
 
-// Check if the theme color is set in the session, otherwise default to a preset value (like 'blue')
-$theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blue'; // Default to blue theme if not set
+// Database connection for saving results to user_database
+$user_dbname = 'user_database'; // The database where you want to store results
+try {
+    $pdo_user = new PDO("mysql:host=$host;dbname=$user_dbname;charset=utf8", $username, $password);
+    $pdo_user->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Database connection for saving results failed: " . $e->getMessage());
+}
+
+// Insert the quiz results into the scorelist table
+$current_date = date("Y-m-d H:i:s");
+
+try {
+    $insertQuery = $pdo_user->prepare("
+        INSERT INTO scorelist (username, lesson, date, score) 
+        VALUES (:username, :lesson, :date, :score)
+    ");
+    $insertQuery->execute([
+        ':username' => $_SESSION['username'], // Get username from the session
+        ':lesson' => $lesson,
+        ':date' => $current_date,
+        ':score' => $score,
+    ]);
+} catch (PDOException $e) {
+    die("Failed to save quiz results to the user database: " . $e->getMessage());
+}
 
 ?>
 <!DOCTYPE html>
@@ -104,10 +135,6 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
             </tbody>
         </table>
     </section>
-    <script>
-
-    </script>
-
 </body>
 
 </html>

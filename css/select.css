@@ -11,6 +11,7 @@ body {
 }
 
 header {
+  position: relative;
   text-align: center;
   background-color: #00555a;
   color: #fff;
@@ -87,4 +88,15 @@ section {
 .back-button:hover {
   background-color: #218838; /* Darker green on hover */
   transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+@media screen and (max-width: 768px) {
+  .display-quiz,
+  .display-video,
+  .display-iden,
+  .display-origami,
+  .display-letter {
+    width: 50%;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

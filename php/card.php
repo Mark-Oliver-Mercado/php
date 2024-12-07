@@ -100,6 +100,10 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
         <h2>Identification for Age <?php echo htmlspecialchars($age); ?> - Lesson <?php echo htmlspecialchars($lesson); ?></h2>
     </header>
     <section>
+        <!-- Display Passage -->
+        <div class="passage">
+            <h3><?php echo nl2br(htmlspecialchars($current_question['passage_text'])); ?></h3>
+        </div>
         <h3><?php echo htmlspecialchars($current_question['question_text']); ?></h3>
         <form method="POST" action="" autocomplete="off">
             <!-- Disable autofill for this input field -->

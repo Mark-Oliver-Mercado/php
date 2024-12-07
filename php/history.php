@@ -48,13 +48,14 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
         <!-- Add the dynamic background image directly to the logout button -->
         <a href="javascript:void(0)" class="logout" onclick="toggleDropdown()" style="background-image: url('<?php echo $profileImagePath; ?>');"></a>
 
-        <div class="logo d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <img src="../images/logo eels.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+        <div class="logo">
+            <a href="#" class="d-flex ">
+                <img src="../images/logo eels.png" alt="Logo" id="logo">
             </a>
         </div>
 
         <div id="dropdown" class="dropdown-content">
+            <a href="../php/dashboard.php">Home</a>
             <a href="../php/profile.php">Profile</a>
             <a href="../php/settings.php">Settings</a>
             <a href="../php/logout.php">Logout</a>
@@ -84,22 +85,25 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
                             </thead>
                             <tbody>
                                 <?php
-                                $query = "SELECT * FROM scorelist";
-                                $query_run = mysqli_query($conn, $query);
+                                $username = $_SESSION['username']; // Get the username from the session
+                                $query = "SELECT * FROM scorelist WHERE username = ?";
+                                $stmt = $conn->prepare($query);
+                                $stmt->bind_param("s", $username);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
 
-                                if (mysqli_num_rows($query_run) > 0) {
-                                    foreach ($query_run as $employee) {
-                                ?>
-                                        <tr>
-                                            <td style="font-size: 0.875em;"><?= $employee['lesson']; ?></td>
-                                            <td style="font-size: 0.875em;"><?= $employee['date']; ?></td>
-                                            <td style="font-size: 0.875em;"><?= $employee['score']; ?></td>
-                                        </tr>
-                                <?php
+                                if ($result->num_rows > 0) {
+                                    while ($record = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td style='font-size: 0.875em;'>" . htmlspecialchars($record['lesson']) . "</td>";
+                                        echo "<td style='font-size: 0.875em;'>" . htmlspecialchars($record['date']) . "</td>";
+                                        echo "<td style='font-size: 0.875em;'>" . htmlspecialchars($record['score']) . "</td>";
+                                        echo "</tr>";
                                     }
                                 } else {
-                                    echo "<h5> No Record Found </h5>";
+                                    echo "<tr><td colspan='3' style='text-align:center;'>No Records Found</td></tr>";
                                 }
+                                $stmt->close();
                                 ?>
                             </tbody>
                         </table>
@@ -108,6 +112,7 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
             </div>
         </div>
     </section>
+
 
     <script>
         document.getElementById('print-btn').addEventListener('click', function() {

@@ -4,14 +4,104 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  background-color: rgba(75, 45, 103, 0.879);
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.logo {
+  image-resolution: 100%;
+  position: absolute;
+  top: 12px;
+}
+
+#logo {
+  height: 70px;
+  width: 70px;
+}
+
+h2 {
+  margin: 10px 0;
+  color: #333; /* Darker text color for readability */
+}
+
+/* Logout Dropdown Button */
+.logout {
+  position: absolute;
+  top: 12px;
+  right: 30px;
+  color: #fff; /* White text color */
+  background-color: lightgrey; /* Bootstrap danger color for logout */
+  background-image: url("../images/profile.jpg"); /* Replace with your image URL */
+  background-size: cover; /* Ensures the image covers the entire button */
+  background-position: center; /* Centers the image */
+  border: 2pt solid black;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 50%; /* Make it a circle */
+  width: 30px; /* Set width and height for the circle */
+  height: 30px;
+  text-align: center;
+  line-height: 50px; /* Vertically center the text */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  cursor: pointer; /* Make it clickable */
+}
+
+/* Hover state for logout button */
+.logout:hover {
+  background-color: rgb(165, 165, 165); /* Darker shade on hover */
+}
+
+/* Dropdown Content (Menu) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 90px !important;
+  right: 2px !important;
+  background-color: #f9f9f9; /* Light background color */
+  min-width: 160px; /* Adjust width as needed */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 0;
+  border-radius: 5px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown content when the logout button is clicked */
+.show {
+  display: block;
+}
+
+.form {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px;
 }
 
 /* Container for the form */
 .upload-form {
+  align-items: center;
+  margin: 50px 0;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -19,7 +109,8 @@ body {
   width: 450px;
   max-width: 100%;
   text-align: center;
-  height: 90vh;
+  max-height: 100%;
+  top: 30px;
 }
 
 /* Background container */
@@ -103,6 +194,7 @@ button[type="submit"]:hover {
 
 /* Bio Section */
 textarea {
+  align-items: center;
   outline: none;
   border: 1px solid #ccc;
   padding: 10px;
@@ -178,6 +270,23 @@ textarea:focus {
   text-decoration: none;
 }
 
+.back-link {
+  display: inline-flex; /* Align icon properly */
+  justify-content: center; /* Center icon horizontally */
+  align-items: center; /* Center icon vertically */
+  text-decoration: none; /* Remove underline */
+  font-size: 2rem; /* Adjust size of the icon (e.g., 2rem for larger) */
+  color: #007bff; /* Default Bootstrap primary color */
+  transition: color 0.3s, transform 0.2s; /* Smooth hover effects */
+  margin-top: -30px;
+  margin-left: -450px;
+}
+
+.back-link:hover {
+  color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
 /* Responsive styling */
 @media (max-width: 500px) {
   .upload-form {
@@ -211,4 +320,47 @@ textarea:focus {
 .back-button:hover {
   background-color: #218838;
   transform: scale(1.05);
+}
+
+@media screen and (max-width: 425px) {
+  #logo {
+    left: -10px;
+    width: 45px;
+    height: 45px;
+  }
+  .logo {
+    top: 20%;
+  }
+
+  header {
+    text-align: center;
+    padding: 10px;
+  }
+  .logout {
+    top: 20%;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+  textarea {
+    width: 80%;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  #logo {
+    left: -10px;
+    width: 55px;
+    height: 55px;
+  }
+  .logo {
+    top: 18%;
+  }
+  .logout {
+    top: 20%;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+  }
 }

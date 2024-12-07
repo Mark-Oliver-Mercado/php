@@ -45,9 +45,9 @@ $theme_color = isset($_SESSION['theme_color']) ? $_SESSION['theme_color'] : 'blu
         <!-- Add the dynamic background image directly to the logout button -->
         <a href="javascript:void(0)" class="logout" onclick="toggleDropdown()" style="background-image: url('<?php echo $profileImagePath; ?>');"></a>
 
-        <div class="logo d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <img src="../images/logo eels.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+        <div class="logo">
+            <a href="#" class="d-flex">
+                <img src="../images/logo eels.png" alt="Logo" id="logo">
             </a>
         </div>
 
